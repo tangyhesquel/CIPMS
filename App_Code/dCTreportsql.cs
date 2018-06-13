@@ -1,0 +1,27 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Data.SqlClient;
+using System.Web.Services;
+using System.Configuration;
+
+/// <summary>
+///dCTreportsql 的摘要说明
+/// </summary>
+public class dCTreportsql
+{
+	public dCTreportsql()
+	{
+		//
+		//TODO: 在此处添加构造函数逻辑
+		//
+	}
+    public SqlDataReader getqty(SqlConnection sqlConn, string fromdate, string todate, string factory, string processtype)
+    {
+        SqlCommand sqlComGet = new SqlCommand();
+        sqlComGet.Connection = sqlConn;
+        sqlComGet.CommandText = "select SUM(CASE PROCESS_CD WHEN 'CUT' THEN OPENING_QTY ELSE 0 END)AS OPENING_QTY_CUT,SUM(CASE PROCESS_CD WHEN 'CUT' THEN END_WIP ELSE 0 END)AS END_WIP_CUT,SUM(CASE PROCESS_CD WHEN 'CUT' THEN OUT_QTY ELSE 0 END)AS OUT_QTY_CUT,SUM(CASE PROCESS_CD WHEN 'PRT' THEN OPENING_QTY ELSE 0 END)AS OPENING_QTY_PRT,SUM(CASE PROCESS_CD WHEN 'PRT' THEN END_WIP ELSE 0 END)AS END_WIP_PRT,SUM(CASE PROCESS_CD WHEN 'PRT' THEN OUT_QTY ELSE 0 END)AS OUT_QTY_PRT,SUM(CASE PROCESS_CD WHEN 'EMB' THEN OPENING_QTY ELSE 0 END)AS OPENING_QTY_EMB,SUM(CASE PROCESS_CD WHEN 'EMB' THEN END_WIP ELSE 0 END)AS END_WIP_EMB,SUM(CASE PROCESS_CD WHEN 'EMB' THEN OUT_QTY ELSE 0 END)AS OUT_QTY_EMB,SUM(CASE PROCESS_CD WHEN 'MATCHING' THEN OPENING_QTY ELSE 0 END)AS OPENING_QTY_MATCHING,SUM(CASE PROCESS_CD WHEN 'MATCHING' THEN END_WIP ELSE 0 END)AS END_WIP_MATCHING,SUM(CASE PROCESS_CD WHEN 'MATCHING' THEN OUT_QTY ELSE 0 END)AS OUT_QTY_MATCHING,SUM(CASE PROCESS_CD WHEN 'DC' THEN OPENING_QTY ELSE 0 END)AS OPENING_QTY_DC,SUM(CASE PROCESS_CD WHEN 'DC' THEN END_WIP ELSE 0 END)AS END_WIP_DC,SUM(CASE PROCESS_CD WHEN 'DC' THEN OUT_QTY ELSE 0 END)AS OUT_QTY_DC from CIPMS_JO_DAILY_STOCK where TRX_DATE>='"+fromdate+"' and TRX_DATE<='"+todate+"' and FACTORY_CD='"+factory+"' and PROCESS_TYPE='"+processtype+"' group by PROCESS_CD";
+        return sqlComGet.ExecuteReader();
+    }
+}

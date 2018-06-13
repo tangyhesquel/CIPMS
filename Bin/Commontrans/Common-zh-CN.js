@@ -1,0 +1,14 @@
+﻿{
+"packagea":"装箱",
+"transactiona":"流转",
+"receivea":"接收",
+"bundlereducea":"下数",
+"printbarcodea":"打印菲纸",
+"employeeoutputa":"员工产量",
+"externalreceivea":"外部入数",
+"bundleinputa":"按扎入数",
+"reporta":"报表",
+"wipreporta":"WIP报表",
+"outputreporta":"产量报表",
+"printsparebarcodea":"打印印花士啤菲纸"
+}

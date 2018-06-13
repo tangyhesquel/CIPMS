@@ -1,0 +1,10 @@
+﻿{
+    "lb_jojoborderno":"制单号",
+    "lb_fromjolayno":"从床次",
+    "lb_tojolayno":"到床次",
+    "lb_jocolor":"颜色",
+    "lb_jooldcutline":"原裁床组别",
+    "lb_jonewcutline":"新裁床组别",
+    "lb_jooldsewline":"原车缝组别",
+    "lb_jonewsewline":"新车缝组别"
+}

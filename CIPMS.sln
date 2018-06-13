@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "CIPMS", "http://localhost:9278", "{0CB26770-AFE0-478D-8C2D-94F2CC8E2A0F}"
+	ProjectSection(WebsiteProperties) = preProject
+		SccProjectName = ""$/CIPMS2018", PRTCAAAA"
+		SccAuxPath = ""
+		SccLocalPath = "."
+		SccProvider = "MSSCCI:Microsoft Visual SourceSafe"
+		UseIISExpress = "true"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5.1"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_9278"
+		Debug.AspNetCompiler.PhysicalPath = "..\CIPMS\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_9278\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "true"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_9278"
+		Release.AspNetCompiler.PhysicalPath = "..\CIPMS\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_9278\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "true"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "..\CIPMS\"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 2
+		SccLocalPath0 = .
+		CanCheckoutShared = false
+		SccWebProject1 = true
+		SccProjectUniqueName1 = http://localhost:9278
+		SccLocalPath1 = D:\\Bau\\CIPMS
+		SccProjectEnlistmentChoice1 = 2
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0CB26770-AFE0-478D-8C2D-94F2CC8E2A0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CB26770-AFE0-478D-8C2D-94F2CC8E2A0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CB26770-AFE0-478D-8C2D-94F2CC8E2A0F}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CB26770-AFE0-478D-8C2D-94F2CC8E2A0F}.Release|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,25 @@
+﻿{
+"btn_bundleinput":"Bundle Input",
+"btn_feizhiprint":"Print Barcode",
+"btn_package":"Package",
+"btn_transfer":"Transaction",
+"btn_receive":"Receive",
+"btn_reduce":"Reduce",
+"btn_matching":"Matching",
+"btn_employeeoutput":"Employee Output",
+"btn_wipreport":"WIP Report",
+"btn_outputreport":"Output Report",
+"btn_dctreport":"dCT Report",
+"btn_docnoinquiry":"DocNo. Inquiry",
+"btn_bundleorcartoninquiry":"Barcode Information Inquiry",
+"wipandoutputlia":"Real-time Production Information Report ",
+"lbl_business":"Modules",
+"lbl_report":"Report",
+ "btn_detail":"Show Detail",
+ "btn_selectall":"Select All",
+ "btn_selectnone":"Select None",
+"queryfactory":"--Change Factory--", 
+"printsparebarcodea":"Print Spare Code",
+"accounterror":"No Permession to Access this Factory for your Account ID!"    
+
+}
