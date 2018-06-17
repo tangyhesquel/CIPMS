@@ -189,6 +189,7 @@ function Commontranslation(temp) {
         },
         success: function (data) {
             var result = eval(data);
+            debugger;
             $('#packagea').html(result.packagea);
             $('#transactiona').html(result.transactiona);
             $('#receivea').html(result.receivea);
@@ -515,6 +516,7 @@ function Redirect(fty, environment, page) {
 
 //tangyh 2017.04.27
 
+//debugger;
 function iprocess() {
     $.ajax({
         type: "POST",
@@ -533,7 +535,7 @@ function iprocess() {
         }
     });
 };
-
+//debugger;
 function NotificationInit() {
     notification = $("#notification").kendoNotification({
         autoHideAfter: 3000,
@@ -549,7 +551,7 @@ function NotificationInit() {
     }).data("kendoNotification");
 };
 
-
+//debugger;
 function nextprocessselecttrans() {
     $('#nextprocessselect').empty();
     $('#nextprocessselect').append("<option value='all' selected='selected'>ALL(全部)</option>");

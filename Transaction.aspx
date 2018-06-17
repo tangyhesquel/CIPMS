@@ -2873,7 +2873,7 @@
                                                 cartonbarcode = result[0].DOCNO;
                                                 $('#jumpprint').trigger('click');
                                                 $('#messagetable tbody').after("<tr onmouseover=$(this).addClass('over') onmouseout=$(this).removeClass('over')><td>" + globeltranslate.confirmmessage4 + result[0].DOCNO + "</td></tr>");
-
+                                                debugger;
                                                 empty();
                                             },
                                             error: function (err) {

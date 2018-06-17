@@ -20,8 +20,7 @@
         var environment = "";
         //语言翻译函数
         window.language; //全局变量，保存用户选择了哪个json语言文件
-        var globeltranslate; //保存json字符串
-
+        var globeltranslate; //保存json字符串
         function translate() {
             $.ajax({
                 type: "GET",
@@ -33,7 +32,7 @@
                 error: function () { $.mobile.loading('hide'); alert("Sorry! Pls check your network and refresh your brower! Wrong Code::001") },
                 success: function (json) {
                     globeltranslate = eval(json);
-        
+                    debugger;
                     $('#headertitle').html(globeltranslate.headertitle);
                     $('#footertitle').html(globeltranslate.footertitle);
                     $('#cancelbutton').html(globeltranslate.cancelbutton);
@@ -92,8 +91,7 @@
                     Loginout(fty, environment);
                 }
                 else {
-                    //左侧栏
-
+                    //左侧栏
                     $("#my-menu").mmenu({
                         "footer": {
                             "add": true,
@@ -131,8 +129,7 @@
                         }
                     });
                     //--------------------------------------------------------------------------
-                    //查询制单号
-
+                    //查询制单号
                     $('#querygobutton').click(function () {
                         if ($('#gono').val() == "") {
                             $('#gono').focus();
@@ -179,7 +176,8 @@
                                         $("input[name='part']").each(function (i) {
                                             if (result[0].LASTLAYNO_SELECT_PART.indexOf($(this).val()) > -1) { $(this).attr("checked", true).checkboxradio("refresh"); }
                                             //不是第一床就禁用可以选中部位
-                                             if (result[0].ISFIRSTLAY == "Y") {
+                                            debugger;
+                                            if (result[0].ISFIRSTLAY == "Y") {
                                                 $(this).attr("disabled", false).checkboxradio("refresh");
                                             } else {
                                                 $(this).attr("disabled", true).checkboxradio("refresh");
@@ -200,16 +198,14 @@
                         }
                     });
 
-                    //JO输入框回车按钮事件
-
+                    //JO输入框回车按钮事件
                     $('#gono').bind('keypress', function (event) {
                         if (event.keyCode == '13') {
                             $('#querygobutton').click();
                         }
                     });
 
-                    //注销按钮：返回登录页面
-
+                    //注销按钮：返回登录页面
                     $('#cancelbutton').click(function () {
                         Loginout(fty, environment);
                     });
@@ -232,9 +228,9 @@
 
 
         //--------------------------------------------------------
-        //变化Color时触发
-
+        //变化Color时触发
         function colorchange() {
+             debugger;
             if (($('#gono').val().trim() == "") || ($('#gono').val() == null)) {
                 $('#gono').focus();
                 return;
@@ -275,14 +271,12 @@
         }
 
 
-       //覆盖打印时触发
-
+       //覆盖打印时触发
         function recoverprint() {
             $('#printbutton').attr('disabled', true).button('refresh');
             $('#overprintbutton').attr('disabled', false).button('refresh');
             $('#newlayno').val('');
-            //把第一床选择部位带出来
-
+            //把第一床选择部位带出来
             if (!($('#layno').val().trim() == "" || $('#layno').val() == null) && !($('#gono').val().trim() == "") || ($('#gono').val() == null)) {
                 $.ajax({
                     type: "POST",
@@ -305,14 +299,15 @@
                         $("input[name='part']").each(function (i) {
                             if (result[0].LASTLAYNO_SELECT_PART.indexOf($(this).val()) > -1) { $(this).attr("checked", true).checkboxradio("refresh"); }
                             //不是第一床就禁用可以选中部位
+                            debugger;
                             if (result[0].ISFIRSTLAY == "Y") {
                                 $(this).attr("disabled", false).checkboxradio("refresh");
                             } else {
                                 $(this).attr("disabled", true).checkboxradio("refresh");
                             }
                         });
-                        //SIZE 赋值
-
+                        //SIZE 赋值
+                        debugger;
                         $("input[name='SIZE_NUM']").val('');
                         var sizenum= result[0].SIZE.split('$');
                         for (var i = 0; i < sizenum.length; i++) {
@@ -331,8 +326,7 @@
 
         }
 
-        //新打印或重新打印时触发
-
+        //新打印或重新打印时触发
         function printnew() {
             $('#printbutton').attr('disabled', false).button('refresh');
             $('#overprintbutton').attr('disabled', true).button('refresh');
@@ -373,15 +367,15 @@
                         $("input[name='part']").each(function (i) {
                             if (result[0].LASTLAYNO_SELECT_PART.indexOf($(this).val()) > -1) { $(this).attr("checked", true).checkboxradio("refresh"); }
                             //不是第一床就禁用可以选中部位
-
+                            debugger;
                             if (result[0].ISFIRSTLAY == "Y") {
                                 $(this).attr("disabled", true).checkboxradio("refresh");
                             } else {
                                 $(this).attr("disabled", true).checkboxradio("refresh");
                             }
                         });
-                        //SIZE 赋值
-
+                        //SIZE 赋值
+                        debugger;
                         $("input[name='SIZE_NUM']").val('');
                         var sizenum = result[0].SIZE.split('$');
                         for (var i = 0; i < sizenum.length; i++) {
@@ -404,12 +398,12 @@
 
         //打印公共函数
         function publicPrintfunction(flag, userbarcode) {
-
+            debugger;
             if ($.trim($('#color').val()) == '' || $('#color').val() == null) {
                 alert(globeltranslate.confirmmessage1);
                 return;
             }
-
+            debugger;
             var selectPart = "";
             $("input[name='part']:checked").each(function (i) {
 
@@ -440,6 +434,8 @@
                 return;
             }
 
+
+            debugger;
             var layno = "0";
             if (flag == "Y") {
                 if ($.trim($('#newlayno').val()) != "" && ($.trim($('#layno').val()) == "" || $('#layno').val() == null)) {
@@ -464,9 +460,10 @@
                 alert("print error! please check the print data, thanks.");
                 return;
             }
-          
+            debugger;
 
             if ($.trim($('#color').val()) != '' && $.trim($('#gono').val()) != '' && layno != '0') {
+                debugger;
                 $.mobile.loading('show', { text: globeltranslate.loadingmessage, textVisible: true });
                 $.ajax({
                     type: "POST",
@@ -478,8 +475,10 @@
                     success: function (data) {
 
                         $.mobile.loading('hide');
+                        debugger;
                         // var result = eval(data.d);
                         var result = $.parseJSON(data.d);
+                        debugger;
                         $('#myprinttest').empty();
                         $.each(result.BUNDLEINFO, function (i, o) {
                             var html = "" +
@@ -584,10 +583,12 @@
                     $.mobile.loading('hide');
                     var result = eval(data.d);
                     if (result[0].FLAG == "Y") {
+                        debugger;
                         arr[0] = "Y";
                         arr[1] = result[0].LAYNO;
                       
                     } else {
+                       debugger;
                         arr[0] = "N";
                         arr[1] = result[0].LAYNO;
                     }

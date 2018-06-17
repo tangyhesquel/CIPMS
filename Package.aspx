@@ -689,6 +689,7 @@
                                 get_othercarton = "F";
                                   }
 
+                            //debugger;
                             var barcode = $.trim($(this).val());
                             barcodetype = GetBarcodeType(barcode);
                             if (sessionStorage.getItem("receivecheck") == '1') {//Peer receive/ PRT receive

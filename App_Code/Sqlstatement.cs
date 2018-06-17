@@ -41,7 +41,7 @@ namespace NameSpace
         {
             SqlCommand sqlComGet = new SqlCommand();
             sqlComGet.Connection = sqlConn;
-            sqlComGet.CommandText = "SELECT A.DOC_NO FROM CIPMS_BUNDLE_FOR_SCANNING AS A INNER JOIN CIPMS_TRANSFER_HD AS B ON A.DOC_NO=B.DOC_NO WHERE A.CARTON_BARCODE='"+barcode+"' AND A.CARTON_STATUS='C' AND B.STATUS IN ('S','M','N','X','Y') GROUP BY A.DOC_NO";
+            sqlComGet.CommandText = "SELECT A.DOC_NO FROM CIPMS_BUNDLE_FOR_SCANNING AS A INNER JOIN CIPMS_TRANSFER_HD AS B ON A.DOC_NO=B.DOC_NO WHERE A.CARTON_BARCODE='" + barcode + "' AND A.CARTON_STATUS='C' AND B.STATUS IN ('S','M','N','X','Y') GROUP BY A.DOC_NO";
             return sqlComGet.ExecuteReader();
         }
 
@@ -69,7 +69,7 @@ namespace NameSpace
         {
             SqlCommand sqlComGet = new SqlCommand();
             sqlComGet.Connection = sqlConn;
-            sqlComGet.CommandText = "SELECT A.JOB_ORDER_NO,A.LAY_NO,A.COLOR_CD,A.SIZE_CD,A.BUNDLE_NO,A.BARCODE,A.FACTORY_CD,A.PROCESS_CD,A.PRODUCTION_LINE_CD,A.GARMENT_TYPE,A.PROCESS_TYPE,A.CARTON_BARCODE,A.CARTON_STATUS,A.DOC_NO,MIN(A.QTY)AS QTY,SUM(A.DEFECT)AS DEFECT,MAX(A.DISCREPANCY_QTY)AS DISCREPANCY_QTY FROM (SELECT TOP 100 PERCENT A.BUNDLE_ID,A.JOB_ORDER_NO,A.LAY_NO,A.COLOR_CD,A.SIZE_CD,A.BUNDLE_NO,A.BARCODE,A.PART_CD,B.PART_DESC,A.FACTORY_CD,A.PROCESS_CD,A.PRODUCTION_LINE_CD,A.GARMENT_TYPE,A.PROCESS_TYPE,A.CARTON_BARCODE,A.CARTON_STATUS,A.DOC_NO,A.QTY,A.DEFECT,A.DISCREPANCY_QTY FROM CIPMS_BUNDLE_FOR_SCANNING as A INNER JOIN CIPMS_PART_MASTER as B on A.PART_CD=B.PART_CD INNER JOIN CIPMS_USER_SCANNING_DFT as C on A.BUNDLE_ID=C.BUNDLE_ID WHERE C.DOC_NO='"+docno+"' and C.USER_BARCODE='"+userbarcode+"' ORDER BY C.CREATE_DATE DESC)AS A GROUP BY A.JOB_ORDER_NO,A.LAY_NO,A.COLOR_CD,A.SIZE_CD,A.BUNDLE_NO,A.BARCODE,A.FACTORY_CD,A.PROCESS_CD,A.PRODUCTION_LINE_CD,A.GARMENT_TYPE,A.PROCESS_TYPE,A.CARTON_BARCODE,A.CARTON_STATUS,A.DOC_NO";
+            sqlComGet.CommandText = "SELECT A.JOB_ORDER_NO,A.LAY_NO,A.COLOR_CD,A.SIZE_CD,A.BUNDLE_NO,A.BARCODE,A.FACTORY_CD,A.PROCESS_CD,A.PRODUCTION_LINE_CD,A.GARMENT_TYPE,A.PROCESS_TYPE,A.CARTON_BARCODE,A.CARTON_STATUS,A.DOC_NO,MIN(A.QTY)AS QTY,SUM(A.DEFECT)AS DEFECT,MAX(A.DISCREPANCY_QTY)AS DISCREPANCY_QTY FROM (SELECT TOP 100 PERCENT A.BUNDLE_ID,A.JOB_ORDER_NO,A.LAY_NO,A.COLOR_CD,A.SIZE_CD,A.BUNDLE_NO,A.BARCODE,A.PART_CD,B.PART_DESC,A.FACTORY_CD,A.PROCESS_CD,A.PRODUCTION_LINE_CD,A.GARMENT_TYPE,A.PROCESS_TYPE,A.CARTON_BARCODE,A.CARTON_STATUS,A.DOC_NO,A.QTY,A.DEFECT,A.DISCREPANCY_QTY FROM CIPMS_BUNDLE_FOR_SCANNING as A INNER JOIN CIPMS_PART_MASTER as B on A.PART_CD=B.PART_CD INNER JOIN CIPMS_USER_SCANNING_DFT as C on A.BUNDLE_ID=C.BUNDLE_ID WHERE C.DOC_NO='" + docno + "' and C.USER_BARCODE='" + userbarcode + "' ORDER BY C.CREATE_DATE DESC)AS A GROUP BY A.JOB_ORDER_NO,A.LAY_NO,A.COLOR_CD,A.SIZE_CD,A.BUNDLE_NO,A.BARCODE,A.FACTORY_CD,A.PROCESS_CD,A.PRODUCTION_LINE_CD,A.GARMENT_TYPE,A.PROCESS_TYPE,A.CARTON_BARCODE,A.CARTON_STATUS,A.DOC_NO";
             return sqlComGet.ExecuteReader();
         }
         //by part scann ------add by Jacob 201511/13
@@ -120,7 +120,7 @@ namespace NameSpace
         {
             SqlCommand sqlComGet = new SqlCommand();
             sqlComGet.Connection = sqlConn;
-            sqlComGet.CommandText = "select ID from CIPMS_USER_FUNC where USER_BARCODE='"+userbarcode+"' and FUNC_ID<>1";
+            sqlComGet.CommandText = "select ID from CIPMS_USER_FUNC where USER_BARCODE='" + userbarcode + "' and FUNC_ID<>1";
             return sqlComGet.ExecuteReader();
         }
         //用户注册权限检查
@@ -231,7 +231,7 @@ namespace NameSpace
         //插入用户信息
         public void userinsert(SqlConnection sqlConn, string newbarcode, string employeeno, string username, string factory, string process, string production, string shift, string defaultfunction)
         {
-            string sql = "INSERT INTO CIPMS_USER (USER_BARCODE,EMPLOYEE_NO,NAME,FACTORY_CD,PRC_CD,PRODUCTION_LINE_CD,SHIFT,DEFAULTFUNC) SELECT '"+newbarcode+"','"+employeeno+"','"+username+"','"+factory+"','"+process+"','"+production+"','"+shift+"',MODULE_ID FROM CIPMS_MODULE_MASTER WHERE MODULE_CD='"+defaultfunction+"'";
+            string sql = "INSERT INTO CIPMS_USER (USER_BARCODE,EMPLOYEE_NO,NAME,FACTORY_CD,PRC_CD,PRODUCTION_LINE_CD,SHIFT,DEFAULTFUNC) SELECT '" + newbarcode + "','" + employeeno + "','" + username + "','" + factory + "','" + process + "','" + production + "','" + shift + "',MODULE_ID FROM CIPMS_MODULE_MASTER WHERE MODULE_CD='" + defaultfunction + "'";
             SqlCommand cmd = new SqlCommand(sql, sqlConn);
             cmd.ExecuteNonQuery();
         }
@@ -247,7 +247,7 @@ namespace NameSpace
         {
             SqlCommand sqlComGet = new SqlCommand();
             sqlComGet.Connection = sqlConn;
-            sqlComGet.CommandText = "select a.FUNCTION_ENG,C.MODULE_CD AS MODULE from CIPMS_FUNC_MASTER as a inner join CIPMS_USER_FUNC as b on a.ID = b.FUNC_ID INNER JOIN CIPMS_MODULE_MASTER AS C ON A.MODULE=C.MODULE_ID where a.IS_ACTIVE=1 AND C.ACTIVE=1 and b.USER_BARCODE='"+userbarcode+"'";
+            sqlComGet.CommandText = "select a.FUNCTION_ENG,C.MODULE_CD AS MODULE from CIPMS_FUNC_MASTER as a inner join CIPMS_USER_FUNC as b on a.ID = b.FUNC_ID INNER JOIN CIPMS_MODULE_MASTER AS C ON A.MODULE=C.MODULE_ID where a.IS_ACTIVE=1 AND C.ACTIVE=1 and b.USER_BARCODE='" + userbarcode + "'";
             return sqlComGet.ExecuteReader();
         }
 
@@ -283,7 +283,7 @@ namespace NameSpace
         }
 
         //Savebutton
-        public void save(SqlConnection sqlConn, string docno, string userbarcode, string module,string carno="")
+        public void save(SqlConnection sqlConn, string docno, string userbarcode, string module, string carno = "")
         {
             string sql = "insert into CIPMS_SAVE_AND_QUERY (BUNDLE_ID,CREATE_DATE,CREATE_USER_ID,BUNDLE_BARCODE,PART_CD,FUNCTION_CD,DOC_NO) select BUNDLE_ID,GETDATE(),'" + userbarcode + "',BUNDLE_BARCODE,PART_CD,'" + module + "',DOC_NO from CIPMS_USER_SCANNING_DFT WHERE DOC_NO='" + docno + "' AND USER_BARCODE='" + userbarcode + "';";
             if (carno != "")
@@ -291,7 +291,7 @@ namespace NameSpace
                 sql = sql + "UPDATE  A SET  A.CAR_NO='" + carno + "'  FROM CIPMS_USER_SCANNING_DFT A  WHERE  A.DOC_NO='" + docno +
                       "'  AND A.USER_BARCODE='" + userbarcode + "';";
                 sql = sql +
-                      @"UPDATE B SET B.CAR_NO='"+carno+@"' FROM   CIPMS_USER_SCANNING_DFT A INNER JOIN dbo.CIPMS_BUNDLE_FOR_SCANNING B ON B.BUNDLE_ID = A.BUNDLE_ID
+                      @"UPDATE B SET B.CAR_NO='" + carno + @"' FROM   CIPMS_USER_SCANNING_DFT A INNER JOIN dbo.CIPMS_BUNDLE_FOR_SCANNING B ON B.BUNDLE_ID = A.BUNDLE_ID
             WHERE A.DOC_NO='" + docno + @"' AND A.USER_BARCODE='" + userbarcode + "';";
             }
 
@@ -305,7 +305,7 @@ namespace NameSpace
             sqlComGet.CommandText = "select MAX(CREATE_DATE)as CREATE_DATE from CIPMS_SAVE_AND_QUERY where CREATE_USER_ID='" + userbarcode + "' and FUNCTION_CD='" + module + "'";
             return sqlComGet.ExecuteReader();
         }
-        
+
         //Package
         public SqlDataReader adjustmentbundlescan(SqlConnection sqlConn, string bundlebarcode, string part, string docno, string userbarcode)
         {
@@ -339,13 +339,13 @@ namespace NameSpace
         }
         public void adjustmentcartonscaninsert(SqlConnection sqlConn, string docno, string userbarcode, string cartonbarcode, string functioncd)
         {
-            string sql = "insert into CIPMS_USER_SCANNING_DFT (BUNDLE_ID,DOC_NO,USER_BARCODE,BUNDLE_BARCODE,PART_CD,FUNCTION_CD,CREATE_DATE)SELECT BUNDLE_ID,'"+docno+"','"+userbarcode+"',BARCODE,PART_CD,'"+functioncd+"',GETDATE() from CIPMS_BUNDLE_FOR_SCANNING where BUNDLE_ID IN (SELECT BUNDLE_ID FROM CIPMS_BUNDLE_FOR_SCANNING WHERE CARTON_BARCODE='" + cartonbarcode + "' and CARTON_STATUS='C' EXCEPT SELECT BUNDLE_ID FROM CIPMS_USER_SCANNING_DFT WHERE DOC_NO='" + docno + "' and USER_BARCODE='" + userbarcode + "') order by BARCODE";
+            string sql = "insert into CIPMS_USER_SCANNING_DFT (BUNDLE_ID,DOC_NO,USER_BARCODE,BUNDLE_BARCODE,PART_CD,FUNCTION_CD,CREATE_DATE)SELECT BUNDLE_ID,'" + docno + "','" + userbarcode + "',BARCODE,PART_CD,'" + functioncd + "',GETDATE() from CIPMS_BUNDLE_FOR_SCANNING where BUNDLE_ID IN (SELECT BUNDLE_ID FROM CIPMS_BUNDLE_FOR_SCANNING WHERE CARTON_BARCODE='" + cartonbarcode + "' and CARTON_STATUS='C' EXCEPT SELECT BUNDLE_ID FROM CIPMS_USER_SCANNING_DFT WHERE DOC_NO='" + docno + "' and USER_BARCODE='" + userbarcode + "') order by BARCODE";
             SqlCommand cmd = new SqlCommand(sql, sqlConn);
             cmd.ExecuteNonQuery();
         }
         public void adjustmentdocnoscaninsert(SqlConnection sqlConn, string docno, string userbarcode, string docnobarcode, string functioncd)
         {
-            string sql = "insert into CIPMS_USER_SCANNING_DFT (BUNDLE_ID,DOC_NO,USER_BARCODE,BUNDLE_BARCODE,PART_CD,FUNCTION_CD,CREATE_DATE) SELECT BUNDLE_ID,'"+docno+"','"+userbarcode+"',BARCODE,PART_CD,'"+functioncd+"',GETDATE() from CIPMS_BUNDLE_FOR_SCANNING where BUNDLE_ID IN (SELECT BUNDLE_ID FROM CIPMS_BUNDLE_FOR_SCANNING WHERE DOC_NO='" + docnobarcode + "' EXCEPT SELECT BUNDLE_ID FROM CIPMS_USER_SCANNING_DFT WHERE DOC_NO='" + docno + "' and USER_BARCODE='" + userbarcode + "') order by BARCODE";
+            string sql = "insert into CIPMS_USER_SCANNING_DFT (BUNDLE_ID,DOC_NO,USER_BARCODE,BUNDLE_BARCODE,PART_CD,FUNCTION_CD,CREATE_DATE) SELECT BUNDLE_ID,'" + docno + "','" + userbarcode + "',BARCODE,PART_CD,'" + functioncd + "',GETDATE() from CIPMS_BUNDLE_FOR_SCANNING where BUNDLE_ID IN (SELECT BUNDLE_ID FROM CIPMS_BUNDLE_FOR_SCANNING WHERE DOC_NO='" + docnobarcode + "' EXCEPT SELECT BUNDLE_ID FROM CIPMS_USER_SCANNING_DFT WHERE DOC_NO='" + docno + "' and USER_BARCODE='" + userbarcode + "') order by BARCODE";
             SqlCommand cmd = new SqlCommand(sql, sqlConn);
             cmd.ExecuteNonQuery();
         }
@@ -360,7 +360,7 @@ namespace NameSpace
         {
             SqlCommand sqlComGet = new SqlCommand();
             sqlComGet.Connection = sqlConn;
-           // sqlComGet.CommandText = "SELECT A.CREATE_DATE,A.BUNDLE_ID,C.DOC_NO,C.CARTON_BARCODE,C.FACTORY_CD,C.PROCESS_CD,C.PRODUCTION_LINE_CD,C.PROCESS_TYPE,C.BARCODE,B.PART_CD,B.PART_DESC,C.JOB_ORDER_NO,C.BUNDLE_NO,C.LAY_NO,C.SIZE_CD,C.COLOR_CD,C.QTY,E.WIP,C.DEFECT,C.DISCREPANCY_QTY,C.CARTON_STATUS FROM CIPMS_USER_SCANNING_DFT AS A INNER JOIN CIPMS_PART_MASTER AS B ON A.PART_CD=B.PART_CD INNER JOIN CIPMS_BUNDLE_FOR_SCANNING AS C ON A.BUNDLE_ID=C.BUNDLE_ID INNER JOIN CIPMS_JO_WIP_HD as D ON C.JOB_ORDER_NO=D.JOB_ORDER_NO AND C.COLOR_CD=D.COLOR_CODE AND C.SIZE_CD=D.SIZE_CODE AND C.PART_CD=D.PART_CD AND C.FACTORY_CD=D.FACTORY_CD AND C.PROCESS_CD=D.PROCESS_CD AND C.PRODUCTION_LINE_CD=D.PRODUCTION_LINE_CD AND C.GARMENT_TYPE=D.GARMENT_TYPE AND C.PROCESS_TYPE=D.PROCESS_TYPE INNER JOIN CIPMS_JO_WIP_BUNDLE AS E ON D.STOCK_ID=E.STOCK_ID AND C.BUNDLE_NO=E.BUNDLE_NO WHERE A.DOC_NO='" + docno + "' AND A.USER_BARCODE='" + userbarcode + "' ORDER BY A.CREATE_DATE DESC";
+            // sqlComGet.CommandText = "SELECT A.CREATE_DATE,A.BUNDLE_ID,C.DOC_NO,C.CARTON_BARCODE,C.FACTORY_CD,C.PROCESS_CD,C.PRODUCTION_LINE_CD,C.PROCESS_TYPE,C.BARCODE,B.PART_CD,B.PART_DESC,C.JOB_ORDER_NO,C.BUNDLE_NO,C.LAY_NO,C.SIZE_CD,C.COLOR_CD,C.QTY,E.WIP,C.DEFECT,C.DISCREPANCY_QTY,C.CARTON_STATUS FROM CIPMS_USER_SCANNING_DFT AS A INNER JOIN CIPMS_PART_MASTER AS B ON A.PART_CD=B.PART_CD INNER JOIN CIPMS_BUNDLE_FOR_SCANNING AS C ON A.BUNDLE_ID=C.BUNDLE_ID INNER JOIN CIPMS_JO_WIP_HD as D ON C.JOB_ORDER_NO=D.JOB_ORDER_NO AND C.COLOR_CD=D.COLOR_CODE AND C.SIZE_CD=D.SIZE_CODE AND C.PART_CD=D.PART_CD AND C.FACTORY_CD=D.FACTORY_CD AND C.PROCESS_CD=D.PROCESS_CD AND C.PRODUCTION_LINE_CD=D.PRODUCTION_LINE_CD AND C.GARMENT_TYPE=D.GARMENT_TYPE AND C.PROCESS_TYPE=D.PROCESS_TYPE INNER JOIN CIPMS_JO_WIP_BUNDLE AS E ON D.STOCK_ID=E.STOCK_ID AND C.BUNDLE_NO=E.BUNDLE_NO WHERE A.DOC_NO='" + docno + "' AND A.USER_BARCODE='" + userbarcode + "' ORDER BY A.CREATE_DATE DESC";
             // 去除了下面关系 tangyh 2017.03.26 
             // AND C.PRODUCTION_LINE_CD=D.PRODUCTION_LINE_CD
             //change by 2018-02-26
@@ -389,11 +389,10 @@ namespace NameSpace
             cmd.ExecuteNonQuery();
         }
         public void unscaninsert(SqlConnection sqlConn, string docno, string userbarcode, string functioncd, string cartonbarcode, string get_othercarton, bool nouse, string part)
-
         {
-            string sql="";
-            if (part=="null")
-               part="";
+            string sql = "";
+            if (part == "null")
+                part = "";
 
             if (get_othercarton == "F")
             {
@@ -411,7 +410,7 @@ namespace NameSpace
                 sql = sql + " and CARTON_BARCODE<>'" + cartonbarcode + "'";
 
             }
-            
+
             SqlCommand cmd = new SqlCommand(sql, sqlConn);
             cmd.ExecuteNonQuery();
         }
@@ -419,7 +418,7 @@ namespace NameSpace
 
         public void unscaninsert(SqlConnection sqlConn, string functioncd, string docno, string userbarcode, string bundlebarcode, string part, string get_othercarton)
         {
-            string sql="";
+            string sql = "";
             if (part == "null")
                 part = "";
             if (get_othercarton == "F")
@@ -493,9 +492,9 @@ namespace NameSpace
         {
             SqlCommand sqlComGet = new SqlCommand();
             sqlComGet.Connection = sqlConn;
-      
+
             sqlComGet.CommandText = "select CARTON_STATUS,PROCESS_CD,PROCESS_TYPE FROM CIPMS_CARTON WHERE CARTON_BARCODE='" + barcode + "'";
-            
+
             return sqlComGet.ExecuteReader();
         }
 
@@ -536,11 +535,11 @@ namespace NameSpace
         }
         public void insertnewclosecarton(SqlConnection sqlConn, string cartonstatus, string cartonbarcode, string userbarcode, string process, string processtype)
         {
-            string sql = "insert into CIPMS_CARTON values ('" + cartonbarcode + "','"+cartonstatus+"','" + userbarcode + "',GETDATE(),'" + userbarcode + "',getdate(),'" + process + "','" + processtype + "')";
+            string sql = "insert into CIPMS_CARTON values ('" + cartonbarcode + "','" + cartonstatus + "','" + userbarcode + "',GETDATE(),'" + userbarcode + "',getdate(),'" + process + "','" + processtype + "')";
             SqlCommand cmd = new SqlCommand(sql, sqlConn);
             cmd.ExecuteNonQuery();
         }
-        
+
         //获取layno里bundle part的信息
         public SqlDataReader laynobundle(SqlConnection sqlConn, string jo, string part, string layno)
         {
@@ -549,9 +548,9 @@ namespace NameSpace
             sqlComGet.CommandText = "SELECT BUNDLE_ID,CARTON_BARCODE,PROCESS_CD,BARCODE,PART_CD,JOB_ORDER_NO,BUNDLE_NO,LAY_NO,SIZE_CD,COLOR_CD,QTY,DEFECT,DISCREPANCY_QTY,CARTON_STATUS from CIPMS_BUNDLE_FOR_SCANNING WHERE JOB_ORDER_NO='" + jo + "' AND PART_CD IN (" + part + ") AND LAY_NO IN (" + layno + ")";
             return sqlComGet.ExecuteReader();
         }
-        
+
         //save
-        
+
         public SqlDataReader savejudge(SqlConnection sqlConn, string userbarcode, string docno)
         {
             SqlCommand sqlComGet = new SqlCommand();
@@ -571,7 +570,7 @@ namespace NameSpace
             SqlCommand cmd = new SqlCommand(sql, sqlConn);
             cmd.ExecuteNonQuery();
         }
-        
+
         //querychange
         public SqlDataReader querychange(SqlConnection sqlConn, string date, string userbarcode, string docno, string functioncd)
         {
@@ -582,13 +581,13 @@ namespace NameSpace
         }
         public void unscannedinsert(SqlConnection sqlConn, string date, string userbarcode, string docno, string functioncd)
         {
-            string sql = "insert into CIPMS_USER_SCANNING_DFT (BUNDLE_ID,DOC_NO,USER_BARCODE,BUNDLE_BARCODE,PART_CD,FUNCTION_CD,CREATE_DATE) SELECT BUNDLE_ID,'"+docno+"','"+userbarcode+"',BARCODE,PART_CD,'"+functioncd+"',GETDATE() FROM CIPMS_BUNDLE_FOR_SCANNING where BUNDLE_ID IN (SELECT BUNDLE_ID from CIPMS_SAVE_AND_QUERY WHERE CREATE_DATE='" + date + "' AND CREATE_USER_ID='" + userbarcode + "' AND FUNCTION_CD='" + functioncd + "' EXCEPT SELECT BUNDLE_ID FROM CIPMS_USER_SCANNING_DFT WHERE DOC_NO='" + docno + "' AND USER_BARCODE='" + userbarcode + "') ORDER BY BARCODE";
+            string sql = "insert into CIPMS_USER_SCANNING_DFT (BUNDLE_ID,DOC_NO,USER_BARCODE,BUNDLE_BARCODE,PART_CD,FUNCTION_CD,CREATE_DATE) SELECT BUNDLE_ID,'" + docno + "','" + userbarcode + "',BARCODE,PART_CD,'" + functioncd + "',GETDATE() FROM CIPMS_BUNDLE_FOR_SCANNING where BUNDLE_ID IN (SELECT BUNDLE_ID from CIPMS_SAVE_AND_QUERY WHERE CREATE_DATE='" + date + "' AND CREATE_USER_ID='" + userbarcode + "' AND FUNCTION_CD='" + functioncd + "' EXCEPT SELECT BUNDLE_ID FROM CIPMS_USER_SCANNING_DFT WHERE DOC_NO='" + docno + "' AND USER_BARCODE='" + userbarcode + "') ORDER BY BARCODE";
             SqlCommand cmd = new SqlCommand(sql, sqlConn);
             cmd.ExecuteNonQuery();
         }
         public void querydefect(SqlConnection sqlConn, string date, string userbarcode, string docno)
         {
-            string sql = "insert into CIPMS_BUNDLE_DEFECT_DFT (DOC_NO,BUNDLE_BARCODE,PART_CD,DEFECT_REASON_CD,DEFECT_QTY,USER_BARCODE,CREATE_DATE) select '"+docno+"',BUNDLE_BARCODE,PART_CD,DEFECT_REASON_CD,DEFECT_QTY,USER_BARCODE,GETDATE() from CIPMS_SAVE_AND_QUERY_DEFECT_DFT where CREATE_DATE='" + date + "' and USER_BARCODE='" + userbarcode + "'";
+            string sql = "insert into CIPMS_BUNDLE_DEFECT_DFT (DOC_NO,BUNDLE_BARCODE,PART_CD,DEFECT_REASON_CD,DEFECT_QTY,USER_BARCODE,CREATE_DATE) select '" + docno + "',BUNDLE_BARCODE,PART_CD,DEFECT_REASON_CD,DEFECT_QTY,USER_BARCODE,GETDATE() from CIPMS_SAVE_AND_QUERY_DEFECT_DFT where CREATE_DATE='" + date + "' and USER_BARCODE='" + userbarcode + "'";
             SqlCommand cmd = new SqlCommand(sql, sqlConn);
             cmd.ExecuteNonQuery();
         }
@@ -618,7 +617,7 @@ namespace NameSpace
         {
             SqlCommand sqlComGet = new SqlCommand();
             sqlComGet.Connection = sqlConn;
-            sqlComGet.CommandText = "SELECT PROCESS_CD,PRODUCTION_LINE_CD FROM CIPMS_CARTON where CARTON_BARCODE='"+cartonbarcode+"'";
+            sqlComGet.CommandText = "SELECT PROCESS_CD,PRODUCTION_LINE_CD FROM CIPMS_CARTON where CARTON_BARCODE='" + cartonbarcode + "'";
             return sqlComGet.ExecuteReader();
         }
         //print
@@ -689,7 +688,7 @@ namespace NameSpace
             sqlComGet.CommandText = "select CARTON_BARCODE FROM CIPMS_CARTON where CARTON_BARCODE='" + cartonbarcode + "' and CARTON_STATUS='O' and PROCESS_CD='" + process + "'";
             return sqlComGet.ExecuteReader();
         }
-        
+
         //更新箱码的状态1
         public void updatecartonstatus(SqlConnection sqlConn, string userbarcode, string cartonbarcode, string cartonstatus)
         {
@@ -704,7 +703,7 @@ namespace NameSpace
         {
             SqlCommand sqlComGet = new SqlCommand();
             sqlComGet.Connection = sqlConn;
-            sqlComGet.CommandText = "select BARCODE,BUNDLE_NO,a.PART_CD,b.PART_DESC,QTY from CIPMS_BUNDLE_FOR_SCANNING as a inner join CIPMS_PART_MASTER as b on a.PART_CD=b.PART_CD where BUNDLE_ID in(select BUNDLE_ID from CIPMS_BUNDLE_FOR_SCANNING WHERE CARTON_BARCODE = '" + cartonbarcode + "' AND CARTON_STATUS='C' EXCEPT select BUNDLE_ID from CIPMS_USER_SCANNING_DFT WHERE DOC_NO='" + docno + "' and USER_BARCODE='"+userbarcode+"')";
+            sqlComGet.CommandText = "select BARCODE,BUNDLE_NO,a.PART_CD,b.PART_DESC,QTY from CIPMS_BUNDLE_FOR_SCANNING as a inner join CIPMS_PART_MASTER as b on a.PART_CD=b.PART_CD where BUNDLE_ID in(select BUNDLE_ID from CIPMS_BUNDLE_FOR_SCANNING WHERE CARTON_BARCODE = '" + cartonbarcode + "' AND CARTON_STATUS='C' EXCEPT select BUNDLE_ID from CIPMS_USER_SCANNING_DFT WHERE DOC_NO='" + docno + "' and USER_BARCODE='" + userbarcode + "')";
             return sqlComGet.ExecuteReader();
         }
         public SqlDataReader receivecheckmore(SqlConnection sqlConn, string cartonbarcode, string docno, string userbarcode)
@@ -853,7 +852,7 @@ namespace NameSpace
         }
         public void deletecarton(SqlConnection sqlConn, string docno, string userbarcode, string cartonbarcode)
         {
-            string sql = "delete from CIPMS_USER_SCANNING_DFT from CIPMS_USER_SCANNING_DFT as a inner join CIPMS_BUNDLE_FOR_SCANNING as b on a.BUNDLE_ID=b.BUNDLE_ID where a.DOC_NO='"+docno+"' and a.USER_BARCODE='"+userbarcode+"' and b.CARTON_BARCODE='"+cartonbarcode+"' and b.CARTON_STATUS='C'";
+            string sql = "delete from CIPMS_USER_SCANNING_DFT from CIPMS_USER_SCANNING_DFT as a inner join CIPMS_BUNDLE_FOR_SCANNING as b on a.BUNDLE_ID=b.BUNDLE_ID where a.DOC_NO='" + docno + "' and a.USER_BARCODE='" + userbarcode + "' and b.CARTON_BARCODE='" + cartonbarcode + "' and b.CARTON_STATUS='C'";
             SqlCommand cmd = new SqlCommand(sql, sqlConn);
             cmd.ExecuteNonQuery();
         }
@@ -875,7 +874,7 @@ namespace NameSpace
         {
             SqlCommand sqlComGet = new SqlCommand();
             sqlComGet.Connection = sqlConn;
-            sqlComGet.CommandText = "SELECT COUNT(1)AS count FROM (select A.JOB_ORDER_NO,A.BUNDLE_NO from CIPMS_BUNDLE_FOR_SCANNING AS A INNER JOIN CIPMS_USER_SCANNING_DFT AS B ON A.BUNDLE_ID=B.BUNDLE_ID where B.DOC_NO='"+docno+"' and B.USER_BARCODE='"+userbarcode+"' GROUP BY A.JOB_ORDER_NO,A.BUNDLE_NO)AS A ";
+            sqlComGet.CommandText = "SELECT COUNT(1)AS count FROM (select A.JOB_ORDER_NO,A.BUNDLE_NO from CIPMS_BUNDLE_FOR_SCANNING AS A INNER JOIN CIPMS_USER_SCANNING_DFT AS B ON A.BUNDLE_ID=B.BUNDLE_ID where B.DOC_NO='" + docno + "' and B.USER_BARCODE='" + userbarcode + "' GROUP BY A.JOB_ORDER_NO,A.BUNDLE_NO)AS A ";
             return sqlComGet.ExecuteReader();
         }
         public SqlDataReader totalgarment(SqlConnection sqlConn, string docno, string userbarcode)
@@ -903,7 +902,7 @@ namespace NameSpace
             return sqlComGet.ExecuteReader();
         }
         //defectlist
-        public SqlDataReader defectlist(SqlConnection sqlConn, string docno, string bundlebarcode, string partcd, string factory,string process)
+        public SqlDataReader defectlist(SqlConnection sqlConn, string docno, string bundlebarcode, string partcd, string factory, string process)
         {
             SqlCommand sqlComGet = new SqlCommand();
             sqlComGet.Connection = sqlConn;
@@ -913,7 +912,7 @@ namespace NameSpace
 
 
         //defectDelete(sqlCon, docno, bundlebarcode, partcd, reason, qty, userbarcode, bundleid, process);
-        public Boolean defectDelete(SqlConnection sqlConn, string docno, string bundlebarcode, string partcd, string reason, string qty,string userbarcode, string bundleid, string process)
+        public Boolean defectDelete(SqlConnection sqlConn, string docno, string bundlebarcode, string partcd, string reason, string qty, string userbarcode, string bundleid, string process)
         {
             try
             {
@@ -926,7 +925,7 @@ namespace NameSpace
                 cmd.ExecuteNonQuery();
                 return true;
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return false;
             }
@@ -937,7 +936,7 @@ namespace NameSpace
         {
             SqlCommand sqlComGet = new SqlCommand();
             sqlComGet.Connection = sqlConn;
-            sqlComGet.CommandText = "select SUM(DEFECT_QTY)as QTY from CIPMS_BUNDLE_DEFECT_DFT where BUNDLE_BARCODE='"+bundlebarcode+"' and PART_CD='"+partcd+"' and DOC_NO='"+docno+"' group by BUNDLE_BARCODE,PART_CD";
+            sqlComGet.CommandText = "select SUM(DEFECT_QTY)as QTY from CIPMS_BUNDLE_DEFECT_DFT where BUNDLE_BARCODE='" + bundlebarcode + "' and PART_CD='" + partcd + "' and DOC_NO='" + docno + "' group by BUNDLE_BARCODE,PART_CD";
             return sqlComGet.ExecuteReader();
         }
         //added by Jacob 20151117
@@ -945,7 +944,7 @@ namespace NameSpace
         {
             SqlCommand sqlComGet = new SqlCommand();
             sqlComGet.Connection = sqlConn;
-            sqlComGet.CommandText = "SELECT A.GARMENT_TYPE FROM CIPMS_BUNDLE_FOR_SCANNING AS A INNER JOIN CIPMS_USER_SCANNING_DFT AS B ON A.BUNDLE_ID=B.BUNDLE_ID WHERE B.DOC_NO='"+docno+"' AND B.USER_BARCODE='"+userbarcode+"' GROUP BY A.GARMENT_TYPE";
+            sqlComGet.CommandText = "SELECT A.GARMENT_TYPE FROM CIPMS_BUNDLE_FOR_SCANNING AS A INNER JOIN CIPMS_USER_SCANNING_DFT AS B ON A.BUNDLE_ID=B.BUNDLE_ID WHERE B.DOC_NO='" + docno + "' AND B.USER_BARCODE='" + userbarcode + "' GROUP BY A.GARMENT_TYPE";
             return sqlComGet.ExecuteReader();
         }
         public SqlDataReader getsewgarmenttype(SqlConnection sqlConn, string docno, string userbarcode)
@@ -970,7 +969,7 @@ namespace NameSpace
         }
         public void insertprdgarmenttransferdft(SqlConnection sqlConn, string newdocno, string docno, string userbarcode, string cutline)
         {
-            string sql = "INSERT INTO PRD_GARMENT_TRANSFER_DFT (DOC_NO,JOB_ORDER_NO,COLOR_CD,SIZE_CD,QTY,CUT_LAY_NO,BUNDLE_NO,USER_CARD_ID,SID)select '" + newdocno + "',A.JOB_ORDER_NO,A.COLOR_CD,A.SIZE_CD,MIN(C.WIP),A.LAY_NO,A.BUNDLE_NO,'" + userbarcode + "',NEWID() from CIPMS_BUNDLE_FOR_SCANNING AS A INNER JOIN CIPMS_JO_WIP_HD AS B ON A.JOB_ORDER_NO=B.JOB_ORDER_NO AND A.COLOR_CD=B.COLOR_CODE AND A.SIZE_CD=B.SIZE_CODE AND A.PART_CD=B.PART_CD AND A.FACTORY_CD=B.FACTORY_CD AND A.PROCESS_CD=B.PROCESS_CD AND A.PRODUCTION_LINE_CD=B.PRODUCTION_LINE_CD AND A.GARMENT_TYPE=B.GARMENT_TYPE AND A.PROCESS_TYPE=B.PROCESS_TYPE INNER JOIN CIPMS_JO_WIP_BUNDLE AS C ON B.STOCK_ID=C.STOCK_ID AND A.BUNDLE_NO=C.BUNDLE_NO AND A.PART_CD=C.PART_CD INNER JOIN CIPMS_USER_SCANNING_DFT AS D ON A.BUNDLE_ID=D.BUNDLE_ID WHERE D.DOC_NO='" + docno + "' AND D.USER_BARCODE='" + userbarcode + "' and a.CUT_LINE='"+cutline+"' GROUP BY A.JOB_ORDER_NO,A.COLOR_CD,A.SIZE_CD,A.LAY_NO,A.BUNDLE_NO";
+            string sql = "INSERT INTO PRD_GARMENT_TRANSFER_DFT (DOC_NO,JOB_ORDER_NO,COLOR_CD,SIZE_CD,QTY,CUT_LAY_NO,BUNDLE_NO,USER_CARD_ID,SID)select '" + newdocno + "',A.JOB_ORDER_NO,A.COLOR_CD,A.SIZE_CD,MIN(C.WIP),A.LAY_NO,A.BUNDLE_NO,'" + userbarcode + "',NEWID() from CIPMS_BUNDLE_FOR_SCANNING AS A INNER JOIN CIPMS_JO_WIP_HD AS B ON A.JOB_ORDER_NO=B.JOB_ORDER_NO AND A.COLOR_CD=B.COLOR_CODE AND A.SIZE_CD=B.SIZE_CODE AND A.PART_CD=B.PART_CD AND A.FACTORY_CD=B.FACTORY_CD AND A.PROCESS_CD=B.PROCESS_CD AND A.PRODUCTION_LINE_CD=B.PRODUCTION_LINE_CD AND A.GARMENT_TYPE=B.GARMENT_TYPE AND A.PROCESS_TYPE=B.PROCESS_TYPE INNER JOIN CIPMS_JO_WIP_BUNDLE AS C ON B.STOCK_ID=C.STOCK_ID AND A.BUNDLE_NO=C.BUNDLE_NO AND A.PART_CD=C.PART_CD INNER JOIN CIPMS_USER_SCANNING_DFT AS D ON A.BUNDLE_ID=D.BUNDLE_ID WHERE D.DOC_NO='" + docno + "' AND D.USER_BARCODE='" + userbarcode + "' and a.CUT_LINE='" + cutline + "' GROUP BY A.JOB_ORDER_NO,A.COLOR_CD,A.SIZE_CD,A.LAY_NO,A.BUNDLE_NO";
             SqlCommand cmd = new SqlCommand(sql, sqlConn);
             cmd.ExecuteNonQuery();
         }
@@ -989,7 +988,7 @@ namespace NameSpace
             sqlComGet.CommandText = "select PART_CD from CIPMS_PART_MASTER where PART_DESC='" + bundlepart + "'";
             return sqlComGet.ExecuteReader();
         }
-        public void defectconfirm(SqlConnection sqlConn, string docno, string bundlebarcode, string partcd, string reason, string qty, string userbarcode, string bundleid,string process)
+        public void defectconfirm(SqlConnection sqlConn, string docno, string bundlebarcode, string partcd, string reason, string qty, string userbarcode, string bundleid, string process)
         {
             string sql = "insert into CIPMS_BUNDLE_DEFECT_DFT (DOC_NO,BUNDLE_BARCODE,PART_CD,DEFECT_REASON_CD,DEFECT_QTY,USER_BARCODE,CREATE_DATE,BUNDLE_ID,PROCESS_CD) values ('" + docno + "', '" + bundlebarcode + "', '" + partcd + "', '" + reason + "', '" + qty + "', '" + userbarcode + "', getdate(), '" + bundleid + "', '" + process + "')";
             SqlCommand cmd = new SqlCommand(sql, sqlConn);
@@ -1042,7 +1041,7 @@ namespace NameSpace
         {
             SqlCommand sqlComGet = new SqlCommand();
             sqlComGet.Connection = sqlConn;
-            sqlComGet.CommandText = "select JOB_ORDER_NO,BUNDLE_NO from CIPMS_BUNDLE_FOR_SCANNING where CARTON_BARCODE='"+cartonbarcode+"' AND CARTON_STATUS='C' GROUP BY JOB_ORDER_NO,BUNDLE_NO";
+            sqlComGet.CommandText = "select JOB_ORDER_NO,BUNDLE_NO from CIPMS_BUNDLE_FOR_SCANNING where CARTON_BARCODE='" + cartonbarcode + "' AND CARTON_STATUS='C' GROUP BY JOB_ORDER_NO,BUNDLE_NO";
             return sqlComGet.ExecuteReader();
         }
         public SqlDataReader getcutline(SqlConnection sqlConn, string docno, string userbarcode)
@@ -1056,14 +1055,14 @@ namespace NameSpace
         {
             SqlCommand sqlComGet = new SqlCommand();
             sqlComGet.Connection = sqlConn;
-            sqlComGet.CommandText = "select b.PRODUCTION_LINE_CD from CIPMS_BUNDLE_FOR_SCANNING as a inner join CUT_BUNDLE_HD as b on a.JOB_ORDER_NO=b.JOB_ORDER_NO and a.BUNDLE_NO=b.BUNDLE_NO where a.CARTON_BARCODE='"+cartonbarcode+"' group by b.PRODUCTION_LINE_CD";
+            sqlComGet.CommandText = "select b.PRODUCTION_LINE_CD from CIPMS_BUNDLE_FOR_SCANNING as a inner join CUT_BUNDLE_HD as b on a.JOB_ORDER_NO=b.JOB_ORDER_NO and a.BUNDLE_NO=b.BUNDLE_NO where a.CARTON_BARCODE='" + cartonbarcode + "' group by b.PRODUCTION_LINE_CD";
             return sqlComGet.ExecuteReader();
         }
         public SqlDataReader getcutline(SqlConnection sqlConn, string cartonbarcode)
         {
             SqlCommand sqlComGet = new SqlCommand();
             sqlComGet.Connection = sqlConn;
-            sqlComGet.CommandText = "select b.CUT_LINE from CIPMS_BUNDLE_FOR_SCANNING as a inner join CUT_BUNDLE_HD as b on a.JOB_ORDER_NO=b.JOB_ORDER_NO and a.BUNDLE_NO=b.BUNDLE_NO where a.CARTON_BARCODE='"+cartonbarcode+"' group by b.CUT_LINE";
+            sqlComGet.CommandText = "select b.CUT_LINE from CIPMS_BUNDLE_FOR_SCANNING as a inner join CUT_BUNDLE_HD as b on a.JOB_ORDER_NO=b.JOB_ORDER_NO and a.BUNDLE_NO=b.BUNDLE_NO where a.CARTON_BARCODE='" + cartonbarcode + "' group by b.CUT_LINE";
             return sqlComGet.ExecuteReader();
         }
         public void tranconfirm2(SqlConnection sqlConn, string factory, string seq, string barcodetype)
@@ -1126,7 +1125,7 @@ namespace NameSpace
         //更改，本厂submit
         public void updatebfsdocno(SqlConnection sqlConn, string sql, string userbarcode)
         {
-            sql = "update CIPMS_BUNDLE_FOR_SCANNING set DOC_NO=b.DOC_NO,LAST_MODI_USER_ID='"+userbarcode+"',LAST_MODI_DATE=GETDATE() from CIPMS_BUNDLE_FOR_SCANNING as c, (select JOB_ORDER_NO,BUNDLE_NO,PART_CD,DOC_NO from CIPMS_TRANSFER_DT where DOC_NO in"+sql+") as b where c.JOB_ORDER_NO=b.JOB_ORDER_NO and c.BUNDLE_NO=b.BUNDLE_NO and c.PART_CD=b.PART_CD";
+            sql = "update CIPMS_BUNDLE_FOR_SCANNING set DOC_NO=b.DOC_NO,LAST_MODI_USER_ID='" + userbarcode + "',LAST_MODI_DATE=GETDATE() from CIPMS_BUNDLE_FOR_SCANNING as c, (select JOB_ORDER_NO,BUNDLE_NO,PART_CD,DOC_NO from CIPMS_TRANSFER_DT where DOC_NO in" + sql + ") as b where c.JOB_ORDER_NO=b.JOB_ORDER_NO and c.BUNDLE_NO=b.BUNDLE_NO and c.PART_CD=b.PART_CD";
             SqlCommand cmd = new SqlCommand(sql, sqlConn);
             cmd.ExecuteNonQuery();
         }
@@ -1222,14 +1221,14 @@ namespace NameSpace
         }
         public void updatetransferhd1(SqlConnection sqlConn, string sql)
         {
-            sql = "update CIPMS_JO_WIP_HD set WIP=a.WIP-d.QTY,OUT_QTY=a.OUT_QTY+d.QTY from CIPMS_JO_WIP_HD as a, (select c.JOB_ORDER_NO,c.COLOR_CD,c.SIZE_CD,c.PART_CD,c.PROCESS_CD,c.PRODUCTION_LINE_CD,(SUM(c.QTY)-SUM(c.DISCREPANCY_QTY))as QTY from CIPMS_TRANSFER_DT as b inner join CIPMS_BUNDLE_FOR_SCANNING as c on b.JOB_ORDER_NO=c.JOB_ORDER_NO and b.BUNDLE_NO=c.BUNDLE_NO and b.PART_CD=c.PART_CD where b.DOC_NO IN"+sql+" GROUP BY c.JOB_ORDER_NO,c.COLOR_CD,c.SIZE_CD,c.PART_CD,c.PROCESS_CD,c.PRODUCTION_LINE_CD)as d where a.JOB_ORDER_NO=d.JOB_ORDER_NO and a.COLOR_CODE=d.COLOR_CD and a.SIZE_CODE=d.SIZE_CD and a.PART_CD=d.PART_CD and a.PROCESS_CD=d.PROCESS_CD and a.PRODUCTION_LINE_CD=d.PRODUCTION_LINE_CD";
+            sql = "update CIPMS_JO_WIP_HD set WIP=a.WIP-d.QTY,OUT_QTY=a.OUT_QTY+d.QTY from CIPMS_JO_WIP_HD as a, (select c.JOB_ORDER_NO,c.COLOR_CD,c.SIZE_CD,c.PART_CD,c.PROCESS_CD,c.PRODUCTION_LINE_CD,(SUM(c.QTY)-SUM(c.DISCREPANCY_QTY))as QTY from CIPMS_TRANSFER_DT as b inner join CIPMS_BUNDLE_FOR_SCANNING as c on b.JOB_ORDER_NO=c.JOB_ORDER_NO and b.BUNDLE_NO=c.BUNDLE_NO and b.PART_CD=c.PART_CD where b.DOC_NO IN" + sql + " GROUP BY c.JOB_ORDER_NO,c.COLOR_CD,c.SIZE_CD,c.PART_CD,c.PROCESS_CD,c.PRODUCTION_LINE_CD)as d where a.JOB_ORDER_NO=d.JOB_ORDER_NO and a.COLOR_CODE=d.COLOR_CD and a.SIZE_CODE=d.SIZE_CD and a.PART_CD=d.PART_CD and a.PROCESS_CD=d.PROCESS_CD and a.PRODUCTION_LINE_CD=d.PRODUCTION_LINE_CD";
             SqlCommand cmd = new SqlCommand(sql, sqlConn);
             cmd.ExecuteNonQuery();
         }
         //更改 本厂rework上道部门流转
         public void updatetransferhd3(SqlConnection sqlConn, string sql)
         {
-            sql = "update CIPMS_JO_WIP_HD set WIP=a.WIP-d.QTY from CIPMS_JO_WIP_HD as a, (select c.JOB_ORDER_NO,c.COLOR_CD,c.SIZE_CD,c.PART_CD,c.PROCESS_CD,c.PRODUCTION_LINE_CD,(SUM(c.QTY)-SUM(c.DISCREPANCY_QTY))as QTY from CIPMS_TRANSFER_DT as b inner join CIPMS_BUNDLE_FOR_SCANNING as c on b.JOB_ORDER_NO=c.JOB_ORDER_NO and b.BUNDLE_NO=c.BUNDLE_NO and b.PART_CD=c.PART_CD where b.DOC_NO IN"+sql+" group by c.JOB_ORDER_NO,c.COLOR_CD,c.SIZE_CD,c.PART_CD,c.PROCESS_CD,c.PRODUCTION_LINE_CD)as d where a.JOB_ORDER_NO=d.JOB_ORDER_NO and a.COLOR_CODE=d.COLOR_CD and a.SIZE_CODE=d.SIZE_CD and a.PART_CD=d.PART_CD and a.PROCESS_CD=d.PROCESS_CD and a.PRODUCTION_LINE_CD=d.PRODUCTION_LINE_CD";
+            sql = "update CIPMS_JO_WIP_HD set WIP=a.WIP-d.QTY from CIPMS_JO_WIP_HD as a, (select c.JOB_ORDER_NO,c.COLOR_CD,c.SIZE_CD,c.PART_CD,c.PROCESS_CD,c.PRODUCTION_LINE_CD,(SUM(c.QTY)-SUM(c.DISCREPANCY_QTY))as QTY from CIPMS_TRANSFER_DT as b inner join CIPMS_BUNDLE_FOR_SCANNING as c on b.JOB_ORDER_NO=c.JOB_ORDER_NO and b.BUNDLE_NO=c.BUNDLE_NO and b.PART_CD=c.PART_CD where b.DOC_NO IN" + sql + " group by c.JOB_ORDER_NO,c.COLOR_CD,c.SIZE_CD,c.PART_CD,c.PROCESS_CD,c.PRODUCTION_LINE_CD)as d where a.JOB_ORDER_NO=d.JOB_ORDER_NO and a.COLOR_CODE=d.COLOR_CD and a.SIZE_CODE=d.SIZE_CD and a.PART_CD=d.PART_CD and a.PROCESS_CD=d.PROCESS_CD and a.PRODUCTION_LINE_CD=d.PRODUCTION_LINE_CD";
             SqlCommand cmd = new SqlCommand(sql, sqlConn);
             cmd.ExecuteNonQuery();
         }
@@ -1243,7 +1242,7 @@ namespace NameSpace
         {
             SqlCommand sqlComGet = new SqlCommand();
             sqlComGet.Connection = sqlConn;
-            sqlComGet.CommandText = "select a.STOCK_ID from CIPMS_JO_WIP_HD as a inner join (select c.JOB_ORDER_NO,c.COLOR_CD,c.SIZE_CD,c.PART_CD,d.NEXT_PROCESS_CD,d.NEXT_PRODUCTION_LINE_CD from CIPMS_TRANSFER_DT as c inner join CIPMS_TRANSFER_HD as d on c.DOC_NO=d.DOC_NO where c.DOC_NO='"+trandocno+"') as b on a.JOB_ORDER_NO=b.JOB_ORDER_NO and a.COLOR_CODE=b.COLOR_CD and a.SIZE_CODE=b.SIZE_CD and a.PROCESS_CD=b.NEXT_PROCESS_CD and a.PRODUCTION_LINE_CD=b.NEXT_PRODUCTION_LINE_CD";
+            sqlComGet.CommandText = "select a.STOCK_ID from CIPMS_JO_WIP_HD as a inner join (select c.JOB_ORDER_NO,c.COLOR_CD,c.SIZE_CD,c.PART_CD,d.NEXT_PROCESS_CD,d.NEXT_PRODUCTION_LINE_CD from CIPMS_TRANSFER_DT as c inner join CIPMS_TRANSFER_HD as d on c.DOC_NO=d.DOC_NO where c.DOC_NO='" + trandocno + "') as b on a.JOB_ORDER_NO=b.JOB_ORDER_NO and a.COLOR_CODE=b.COLOR_CD and a.SIZE_CODE=b.SIZE_CD and a.PROCESS_CD=b.NEXT_PROCESS_CD and a.PRODUCTION_LINE_CD=b.NEXT_PRODUCTION_LINE_CD";
             return sqlComGet.ExecuteReader();
         }
         //public SqlDataReader istransferhd(SqlConnection sqlConn, string sql, string process, string productionline)
@@ -1262,7 +1261,7 @@ namespace NameSpace
         public void tranwiphdadd(SqlConnection sqlConn, string factory, string processtype, string garmenttype, string sql)
         {
             string sql1 = "";
-            sql1 = "insert into CIPMS_JO_WIP_HD (FACTORY_CD,JOB_ORDER_NO,COLOR_CODE,SIZE_CODE,PROCESS_CD,PRODUCTION_LINE_CD,PROCESS_TYPE,PART_CD,IN_QTY,WIP,GARMENT_TYPE,PRODUCTION_FACTORY)select '" + factory + "',b.JOB_ORDER_NO,b.COLOR_CD,b.SIZE_CD,b.NEXT_PROCESS_CD,b.NEXT_PRODUCTION_LINE_CD,'" + processtype + "',b.PART_CD,0,0,'" + garmenttype + "','" + factory + "' from (select c.JOB_ORDER_NO,c.COLOR_CD,c.SIZE_CD,c.PART_CD,e.NEXT_PROCESS_CD,e.NEXT_PRODUCTION_LINE_CD from CIPMS_TRANSFER_DT as c inner join CIPMS_TRANSFER_HD as e on c.DOC_NO=e.DOC_NO where c.DOC_NO in"+sql+" group by c.JOB_ORDER_NO,c.COLOR_CD,c.SIZE_CD,c.PART_CD,e.NEXT_PROCESS_CD,e.NEXT_PRODUCTION_LINE_CD)as b left join CIPMS_JO_WIP_HD as a on b.JOB_ORDER_NO=a.JOB_ORDER_NO and b.COLOR_CD=a.COLOR_CODE and b.SIZE_CD=a.SIZE_CODE and b.PART_CD=a.PART_CD and b.NEXT_PROCESS_CD=a.PROCESS_CD and b.NEXT_PRODUCTION_LINE_CD=a.PRODUCTION_LINE_CD";
+            sql1 = "insert into CIPMS_JO_WIP_HD (FACTORY_CD,JOB_ORDER_NO,COLOR_CODE,SIZE_CODE,PROCESS_CD,PRODUCTION_LINE_CD,PROCESS_TYPE,PART_CD,IN_QTY,WIP,GARMENT_TYPE,PRODUCTION_FACTORY)select '" + factory + "',b.JOB_ORDER_NO,b.COLOR_CD,b.SIZE_CD,b.NEXT_PROCESS_CD,b.NEXT_PRODUCTION_LINE_CD,'" + processtype + "',b.PART_CD,0,0,'" + garmenttype + "','" + factory + "' from (select c.JOB_ORDER_NO,c.COLOR_CD,c.SIZE_CD,c.PART_CD,e.NEXT_PROCESS_CD,e.NEXT_PRODUCTION_LINE_CD from CIPMS_TRANSFER_DT as c inner join CIPMS_TRANSFER_HD as e on c.DOC_NO=e.DOC_NO where c.DOC_NO in" + sql + " group by c.JOB_ORDER_NO,c.COLOR_CD,c.SIZE_CD,c.PART_CD,e.NEXT_PROCESS_CD,e.NEXT_PRODUCTION_LINE_CD)as b left join CIPMS_JO_WIP_HD as a on b.JOB_ORDER_NO=a.JOB_ORDER_NO and b.COLOR_CD=a.COLOR_CODE and b.SIZE_CD=a.SIZE_CODE and b.PART_CD=a.PART_CD and b.NEXT_PROCESS_CD=a.PROCESS_CD and b.NEXT_PRODUCTION_LINE_CD=a.PRODUCTION_LINE_CD";
             SqlCommand cmd = new SqlCommand(sql1, sqlConn);
             cmd.ExecuteNonQuery();
             sql1 = "update CIPMS_JO_WIP_HD set WIP=a.WIP+b.QTY,INTRANS_IN=a.INTRANS_IN+b.QTY from CIPMS_JO_WIP_HD as a, (select c.JOB_ORDER_NO,c.COLOR_CD,c.SIZE_CD,c.PART_CD,e.NEXT_PROCESS_CD,e.NEXT_PRODUCTION_LINE_CD,(d.QTY-d.DISCREPANCY_QTY)as QTY from CIPMS_TRANSFER_DT as c inner join CIPMS_BUNDLE_FOR_SCANNING as d on c.JOB_ORDER_NO=d.JOB_ORDER_NO and c.BUNDLE_NO=d.BUNDLE_NO and c.PART_CD=d.PART_CD inner join CIPMS_TRANSFER_HD as e on c.DOC_NO=e.DOC_NO where c.DOC_NO in" + sql + ")as b where a.JOB_ORDER_NO=b.JOB_ORDER_NO and a.COLOR_CODE=b.COLOR_CD and a.SIZE_CODE=b.SIZE_CD and a.PART_CD=b.PART_CD and a.PROCESS_CD=b.NEXT_PROCESS_CD and a.PRODUCTION_LINE_CD=b.NEXT_PRODUCTION_LINE_CD";
@@ -1270,7 +1269,7 @@ namespace NameSpace
             cmd.ExecuteNonQuery();
         }
         //更改 本厂下道流转
-        public void tranwiphdadd2(SqlConnection sqlConn, string factory,string processtype, string garmenttype, string sql)
+        public void tranwiphdadd2(SqlConnection sqlConn, string factory, string processtype, string garmenttype, string sql)
         {
             string sql1 = "";
             sql1 = "insert into CIPMS_JO_WIP_HD (FACTORY_CD,JOB_ORDER_NO,COLOR_CODE,SIZE_CODE,PROCESS_CD,PRODUCTION_LINE_CD,PROCESS_TYPE,PART_CD,IN_QTY,OUT_QTY,DISCREPANCY_QTY,WIP,INTRANS_QTY,INTRANS_IN,INTRANS_OUT,BUNDLE_REDUCE,MATCHING,GARMENT_TYPE,PRODUCTION_FACTORY)select '" + factory + "',a.JOB_ORDER_NO,a.COLOR_CD,a.SIZE_CD,a.PROCESS_CD,a.PRODUCTION_LINE_CD,'" + processtype + "',a.PART_CD,0,0,0,0,0,0,0,0,0,'" + garmenttype + "','" + factory + "' from (select JOB_ORDER_NO,COLOR_CD,SIZE_CD,PART_CD,PROCESS_CD,PRODUCTION_LINE_CD from CIPMS_BUNDLE_FOR_SCANNING where DOC_NO in" + sql + " group by JOB_ORDER_NO,COLOR_CD,SIZE_CD,PART_CD,PROCESS_CD,PRODUCTION_LINE_CD except select JOB_ORDER_NO,COLOR_CODE,SIZE_CODE,PART_CD,PROCESS_CD,PRODUCTION_LINE_CD from CIPMS_JO_WIP_HD)as a";
@@ -1292,19 +1291,19 @@ namespace NameSpace
         }
         public void insertwiphdadd(SqlConnection sqlConn, string trandocno, string factory, string processtype, string garmenttype)
         {
-            string sql = "insert into CIPMS_JO_WIP_HD (FACTORY_CD, JOB_ORDER_NO, COLOR_CODE, SIZE_CODE, PROCESS_CD, PRODUCTION_LINE_CD,PROCESS_TYPE, PART_CD, WIP, INTRANS_IN, GARMENT_TYPE, PRODUCTION_FACTORY) select '"+factory+"',a.JOB_ORDER_NO,a.COLOR_CD,a.SIZE_CD,b.NEXT_PROCESS_CD,b.NEXT_PRODUCTION_LINE_CD,'"+processtype+"',a.PART_CD,SUM(a.QTY),SUM(a.QTY),'"+garmenttype+"','"+factory+"' from CIPMS_TRANSFER_DT as a inner join CIPMS_TRANSFER_HD as b on a.DOC_NO=b.DOC_NO where a.DOC_NO='"+trandocno+"' group by a.JOB_ORDER_NO,a.COLOR_CD,a.SIZE_CD,a.PART_CD,b.NEXT_PROCESS_CD,b.NEXT_PRODUCTION_LINE_CD";
+            string sql = "insert into CIPMS_JO_WIP_HD (FACTORY_CD, JOB_ORDER_NO, COLOR_CODE, SIZE_CODE, PROCESS_CD, PRODUCTION_LINE_CD,PROCESS_TYPE, PART_CD, WIP, INTRANS_IN, GARMENT_TYPE, PRODUCTION_FACTORY) select '" + factory + "',a.JOB_ORDER_NO,a.COLOR_CD,a.SIZE_CD,b.NEXT_PROCESS_CD,b.NEXT_PRODUCTION_LINE_CD,'" + processtype + "',a.PART_CD,SUM(a.QTY),SUM(a.QTY),'" + garmenttype + "','" + factory + "' from CIPMS_TRANSFER_DT as a inner join CIPMS_TRANSFER_HD as b on a.DOC_NO=b.DOC_NO where a.DOC_NO='" + trandocno + "' group by a.JOB_ORDER_NO,a.COLOR_CD,a.SIZE_CD,a.PART_CD,b.NEXT_PROCESS_CD,b.NEXT_PRODUCTION_LINE_CD";
             SqlCommand cmd = new SqlCommand(sql, sqlConn);
             cmd.ExecuteNonQuery();
         }
         public void insertwipbundle(SqlConnection sqlConn, string sql)
         {
-            sql = "insert into CIPMS_JO_WIP_BUNDLE (STOCK_ID,BUNDLE_NO,WIP,TRANSFER_IN,PART_CD) select a.STOCK_ID,b.BUNDLE_NO,b.QTY,b.QTY,b.PART_CD from CIPMS_JO_WIP_HD as a inner join CIPMS_TRANSFER_DT as b on a.JOB_ORDER_NO=b.JOB_ORDER_NO and a.COLOR_CODE=b.COLOR_CD and a.SIZE_CODE=b.SIZE_CD and a.PART_CD=b.PART_CD inner join CIPMS_TRANSFER_HD as c on b.DOC_NO=c.DOC_NO and a.PROCESS_CD=c.NEXT_PROCESS_CD and a.PRODUCTION_LINE_CD=c.NEXT_PRODUCTION_LINE_CD where b.DOC_NO in"+sql+"";
+            sql = "insert into CIPMS_JO_WIP_BUNDLE (STOCK_ID,BUNDLE_NO,WIP,TRANSFER_IN,PART_CD) select a.STOCK_ID,b.BUNDLE_NO,b.QTY,b.QTY,b.PART_CD from CIPMS_JO_WIP_HD as a inner join CIPMS_TRANSFER_DT as b on a.JOB_ORDER_NO=b.JOB_ORDER_NO and a.COLOR_CODE=b.COLOR_CD and a.SIZE_CODE=b.SIZE_CD and a.PART_CD=b.PART_CD inner join CIPMS_TRANSFER_HD as c on b.DOC_NO=c.DOC_NO and a.PROCESS_CD=c.NEXT_PROCESS_CD and a.PRODUCTION_LINE_CD=c.NEXT_PRODUCTION_LINE_CD where b.DOC_NO in" + sql + "";
             SqlCommand cmd = new SqlCommand(sql, sqlConn);
             cmd.ExecuteNonQuery();
         }
         public void peerwipcontrol(SqlConnection sqlConn, string sql, string nextfactory, string peerfactorydblink)
         {
-            sql = "delete from "+peerfactorydblink+" where FACTORY_CD='" + nextfactory + "' and JOB_ORDER_NO in(select JOB_ORDER_NO from CIPMS_TRANSFER_DT where DOC_NO in" + sql + " group by JOB_ORDER_NO) and PROCESS_CD in('CUT','PRT','EMB','DC') and GARMENT_TYPE='K'";
+            sql = "delete from " + peerfactorydblink + " where FACTORY_CD='" + nextfactory + "' and JOB_ORDER_NO in(select JOB_ORDER_NO from CIPMS_TRANSFER_DT where DOC_NO in" + sql + " group by JOB_ORDER_NO) and PROCESS_CD in('CUT','PRT','EMB','DC') and GARMENT_TYPE='K'";
             SqlCommand cmd = new SqlCommand(sql, sqlConn);
             cmd.ExecuteNonQuery();
         }
@@ -1336,7 +1335,7 @@ namespace NameSpace
         }
         public void updatetrandefect(SqlConnection sqlConn, string sql)
         {
-            sql = "update CIPMS_BUNDLE_FOR_SCANNING set DEFECT=DEFECT+d.QTY from CIPMS_BUNDLE_FOR_SCANNING as c, (select a.JOB_ORDER_NO,a.BUNDLE_NO,a.PART_CD,b.QTY from CIPMS_TRANSFER_DT as a inner join CIPMS_BUNDLE_DEFECT as b on a.TRX_ID=b.TRX_ID where a.DOC_NO in"+sql+")as d where c.JOB_ORDER_NO=d.JOB_ORDER_NO and c.BUNDLE_NO=d.BUNDLE_NO and c.PART_CD=d.PART_CD";
+            sql = "update CIPMS_BUNDLE_FOR_SCANNING set DEFECT=DEFECT+d.QTY from CIPMS_BUNDLE_FOR_SCANNING as c, (select a.JOB_ORDER_NO,a.BUNDLE_NO,a.PART_CD,b.QTY from CIPMS_TRANSFER_DT as a inner join CIPMS_BUNDLE_DEFECT as b on a.TRX_ID=b.TRX_ID where a.DOC_NO in" + sql + ")as d where c.JOB_ORDER_NO=d.JOB_ORDER_NO and c.BUNDLE_NO=d.BUNDLE_NO and c.PART_CD=d.PART_CD";
             SqlCommand cmd = new SqlCommand(sql, sqlConn);
             cmd.ExecuteNonQuery();
         }
@@ -1370,7 +1369,7 @@ namespace NameSpace
         }
         public void clearandinserttemptable(SqlConnection sqlConn, string userbarcode, string peerfactorydblink)
         {
-            string sql = "delete from #"+userbarcode+";INSERT INTO #" + userbarcode + " (STOCK_ID,JOB_ORDER_NO,COLOR_CD,SIZE_CD,PART_CD,PROCESS_CD,PRODUCTION_LINE_CD) SELECT STOCK_ID,JOB_ORDER_NO,COLOR_CODE,SIZE_CODE,PART_CD,PROCESS_CD,PRODUCTION_LINE_CD FROM " + peerfactorydblink + "";
+            string sql = "delete from #" + userbarcode + ";INSERT INTO #" + userbarcode + " (STOCK_ID,JOB_ORDER_NO,COLOR_CD,SIZE_CD,PART_CD,PROCESS_CD,PRODUCTION_LINE_CD) SELECT STOCK_ID,JOB_ORDER_NO,COLOR_CODE,SIZE_CODE,PART_CD,PROCESS_CD,PRODUCTION_LINE_CD FROM " + peerfactorydblink + "";
             SqlCommand cmd = new SqlCommand(sql, sqlConn);
             cmd.ExecuteNonQuery();
         }
@@ -1421,7 +1420,7 @@ namespace NameSpace
             sql1 = "update CIPMS_BUNDLE_FOR_SCANNING set QTY=b.QTY,DOC_NO=b.DOC_NO, PROCESS_CD=b.NEXT_PROCESS_CD, PRODUCTION_LINE_CD=b.NEXT_PRODUCTION_LINE_CD,LAST_MODI_USER_ID='" + userbarcode + "',LAST_MODI_DATE=GETDATE() from CIPMS_BUNDLE_FOR_SCANNING as a, (select c.DOC_NO,c.JOB_ORDER_NO,c.BUNDLE_NO,c.PART_CD,c.QTY,d.NEXT_PROCESS_CD,'NA' as NEXT_PRODUCTION_LINE_CD from CIPMS_TRANSFER_DT as c inner join CIPMS_TRANSFER_HD as d on c.DOC_NO=d.DOC_NO where c.DOC_NO IN" + sql + ") as b where a.JOB_ORDER_NO=b.JOB_ORDER_NO and a.BUNDLE_NO=b.BUNDLE_NO and a.PART_CD=b.PART_CD";
             SqlCommand cmd = new SqlCommand(sql1, sqlConn);
             cmd.ExecuteNonQuery();
-            sql1 = "update CIPMS_BUNDLE_FOR_SCANNING set PRODUCTION_LINE_CD='"+nextproduction+"' from CIPMS_BUNDLE_FOR_SCANNING as c, (select JOB_ORDER_NO,BUNDLE_NO,PART_CD from CIPMS_TRANSFER_DT where DOC_NO in"+sql+" and JOB_ORDER_NO in (select b.JOB_ORDER_NO from PRD_JO_PROCESS_WIP_CONTROL as a inner join CIPMS_TRANSFER_DT as b on a.JOB_ORDER_NO=b.JOB_ORDER_NO where b.DOC_NO in"+sql+" and a.FACTORY_CD='"+factory+"' and a.PROCESS_CD='"+nextprocess+"' and a.WIP_CONTROL_BY_PRD_LINE='Y' and GARMENT_TYPE='"+garmenttype+"' and PROCESS_TYPE='"+processtype+"' group by b.JOB_ORDER_NO))as d where c.JOB_ORDER_NO=d.JOB_ORDER_NO and c.BUNDLE_NO=d.BUNDLE_NO and c.PART_CD=d.PART_CD";
+            sql1 = "update CIPMS_BUNDLE_FOR_SCANNING set PRODUCTION_LINE_CD='" + nextproduction + "' from CIPMS_BUNDLE_FOR_SCANNING as c, (select JOB_ORDER_NO,BUNDLE_NO,PART_CD from CIPMS_TRANSFER_DT where DOC_NO in" + sql + " and JOB_ORDER_NO in (select b.JOB_ORDER_NO from PRD_JO_PROCESS_WIP_CONTROL as a inner join CIPMS_TRANSFER_DT as b on a.JOB_ORDER_NO=b.JOB_ORDER_NO where b.DOC_NO in" + sql + " and a.FACTORY_CD='" + factory + "' and a.PROCESS_CD='" + nextprocess + "' and a.WIP_CONTROL_BY_PRD_LINE='Y' and GARMENT_TYPE='" + garmenttype + "' and PROCESS_TYPE='" + processtype + "' group by b.JOB_ORDER_NO))as d where c.JOB_ORDER_NO=d.JOB_ORDER_NO and c.BUNDLE_NO=d.BUNDLE_NO and c.PART_CD=d.PART_CD";
             cmd = new SqlCommand(sql1, sqlConn);
             cmd.ExecuteNonQuery();
         }
@@ -1465,7 +1464,7 @@ namespace NameSpace
         {
             SqlCommand sqlComGet = new SqlCommand();
             sqlComGet.Connection = sqlConn;
-            sqlComGet.CommandText = "select b.PRODUCTION_LINE_CD from CIPMS_USER_SCANNING_DFT as a inner join CIPMS_BUNDLE_FOR_SCANNING as b on a.BUNDLE_ID=b.BUNDLE_ID where a.DOC_NO='"+docno+"' and a.USER_BARCODE='"+userbarcode+"' group by b.PRODUCTION_LINE_CD";
+            sqlComGet.CommandText = "select b.PRODUCTION_LINE_CD from CIPMS_USER_SCANNING_DFT as a inner join CIPMS_BUNDLE_FOR_SCANNING as b on a.BUNDLE_ID=b.BUNDLE_ID where a.DOC_NO='" + docno + "' and a.USER_BARCODE='" + userbarcode + "' group by b.PRODUCTION_LINE_CD";
             return sqlComGet.ExecuteReader();
         }
         public SqlDataReader selecttranproduction1(SqlConnection sqlConn, string docno, string userbarcode)
@@ -1487,7 +1486,7 @@ namespace NameSpace
         {
             SqlCommand sqlComGet = new SqlCommand();
             sqlComGet.Connection = sqlConn;
-            sqlComGet.CommandText = "SELECT a.FACTORY_CD,a.NEXT_PROCESS_PRODUCTION_FACTORY,a.NEXT_PROCESS_CD,a.NEXT_PRODUCTION_LINE_CD FROM CIPMS_TRANSFER_HD as a inner join CIPMS_BUNDLE_FOR_SCANNING as b on a.DOC_NO=b.DOC_NO inner join CIPMS_USER_SCANNING_DFT as c on b.BUNDLE_ID=c.BUNDLE_ID where c.DOC_NO='"+docno+"' and c.USER_BARCODE='"+userbarcode+"' group by a.FACTORY_CD,a.NEXT_PROCESS_PRODUCTION_FACTORY,a.NEXT_PROCESS_CD,a.NEXT_PRODUCTION_LINE_CD";
+            sqlComGet.CommandText = "SELECT a.FACTORY_CD,a.NEXT_PROCESS_PRODUCTION_FACTORY,a.NEXT_PROCESS_CD,a.NEXT_PRODUCTION_LINE_CD FROM CIPMS_TRANSFER_HD as a inner join CIPMS_BUNDLE_FOR_SCANNING as b on a.DOC_NO=b.DOC_NO inner join CIPMS_USER_SCANNING_DFT as c on b.BUNDLE_ID=c.BUNDLE_ID where c.DOC_NO='" + docno + "' and c.USER_BARCODE='" + userbarcode + "' group by a.FACTORY_CD,a.NEXT_PROCESS_PRODUCTION_FACTORY,a.NEXT_PROCESS_CD,a.NEXT_PRODUCTION_LINE_CD";
             return sqlComGet.ExecuteReader();
         }
         public SqlDataReader getreceiveprocess(SqlConnection sqlConn, string docno)
@@ -1522,7 +1521,7 @@ namespace NameSpace
         {
             SqlCommand sqlComGet = new SqlCommand();
             sqlComGet.Connection = sqlConn;
-            sqlComGet.CommandText = "select distinct a.DOC_NO from CIPMS_BUNDLE_FOR_SCANNING as a inner join CIPMS_TRANSFER_HD as b on a.DOC_NO=b.DOC_NO where a.CARTON_BARCODE='"+barcode+"' and a.CARTON_STATUS='C' and (b.STATUS='S' or b.STATUS='M' or b.STATUS='N' or b.STATUS='Y' or b.STATUS='X')";
+            sqlComGet.CommandText = "select distinct a.DOC_NO from CIPMS_BUNDLE_FOR_SCANNING as a inner join CIPMS_TRANSFER_HD as b on a.DOC_NO=b.DOC_NO where a.CARTON_BARCODE='" + barcode + "' and a.CARTON_STATUS='C' and (b.STATUS='S' or b.STATUS='M' or b.STATUS='N' or b.STATUS='Y' or b.STATUS='X')";
             return sqlComGet.ExecuteReader();
         }
         public SqlDataReader reccartondocno(SqlConnection sqlConn, string barcode, string status)
@@ -1585,16 +1584,16 @@ namespace NameSpace
         }
         public void recwiphdadd(SqlConnection sqlConn, string factory, string processtype, string garmenttype, string barcode)
         {
-            string sql1 = "update CIPMS_JO_WIP_HD set WIP=WIP+z.QTY, IN_QTY=IN_QTY+z.QTY from CIPMS_JO_WIP_HD as m,(select b.JOB_ORDER_NO,b.COLOR_CD,b.SIZE_CD,b.NEXT_PROCESS_CD,b.NEXT_PRODUCTION_LINE_CD,b.PART_CD,SUM(a.QTY)as QTY from CIPMS_TRANSFER_DT as a inner join (select c.JOB_ORDER_NO,c.COLOR_CD,c.SIZE_CD,c.PART_CD,d.NEXT_PROCESS_CD,d.NEXT_PRODUCTION_LINE_CD from CIPMS_TRANSFER_DT as c inner join CIPMS_TRANSFER_HD as d on c.DOC_NO=d.DOC_NO where c.DOC_NO in"+barcode+" intersect select JOB_ORDER_NO,COLOR_CODE,SIZE_CODE,PART_CD,PROCESS_CD,PRODUCTION_LINE_CD from CIPMS_JO_WIP_HD group by JOB_ORDER_NO,COLOR_CODE,SIZE_CODE,PART_CD,PROCESS_CD,PRODUCTION_LINE_CD) as b on a.JOB_ORDER_NO=b.JOB_ORDER_NO and a.COLOR_CD=b.COLOR_CD and a.SIZE_CD=b.SIZE_CD and a.PART_CD=b.PART_CD where a.DOC_NO in"+barcode+" group by b.JOB_ORDER_NO,b.COLOR_CD,b.SIZE_CD,b.PART_CD,b.NEXT_PROCESS_CD,b.NEXT_PRODUCTION_LINE_CD ) as z where m.JOB_ORDER_NO=z.JOB_ORDER_NO and m.COLOR_CODE=z.COLOR_CD and m.SIZE_CODE=z.SIZE_CD and m.PART_CD=z.PART_CD and m.PROCESS_CD=z.NEXT_PROCESS_CD and m.PRODUCTION_LINE_CD=z.NEXT_PRODUCTION_LINE_CD";
+            string sql1 = "update CIPMS_JO_WIP_HD set WIP=WIP+z.QTY, IN_QTY=IN_QTY+z.QTY from CIPMS_JO_WIP_HD as m,(select b.JOB_ORDER_NO,b.COLOR_CD,b.SIZE_CD,b.NEXT_PROCESS_CD,b.NEXT_PRODUCTION_LINE_CD,b.PART_CD,SUM(a.QTY)as QTY from CIPMS_TRANSFER_DT as a inner join (select c.JOB_ORDER_NO,c.COLOR_CD,c.SIZE_CD,c.PART_CD,d.NEXT_PROCESS_CD,d.NEXT_PRODUCTION_LINE_CD from CIPMS_TRANSFER_DT as c inner join CIPMS_TRANSFER_HD as d on c.DOC_NO=d.DOC_NO where c.DOC_NO in" + barcode + " intersect select JOB_ORDER_NO,COLOR_CODE,SIZE_CODE,PART_CD,PROCESS_CD,PRODUCTION_LINE_CD from CIPMS_JO_WIP_HD group by JOB_ORDER_NO,COLOR_CODE,SIZE_CODE,PART_CD,PROCESS_CD,PRODUCTION_LINE_CD) as b on a.JOB_ORDER_NO=b.JOB_ORDER_NO and a.COLOR_CD=b.COLOR_CD and a.SIZE_CD=b.SIZE_CD and a.PART_CD=b.PART_CD where a.DOC_NO in" + barcode + " group by b.JOB_ORDER_NO,b.COLOR_CD,b.SIZE_CD,b.PART_CD,b.NEXT_PROCESS_CD,b.NEXT_PRODUCTION_LINE_CD ) as z where m.JOB_ORDER_NO=z.JOB_ORDER_NO and m.COLOR_CODE=z.COLOR_CD and m.SIZE_CODE=z.SIZE_CD and m.PART_CD=z.PART_CD and m.PROCESS_CD=z.NEXT_PROCESS_CD and m.PRODUCTION_LINE_CD=z.NEXT_PRODUCTION_LINE_CD";
             SqlCommand cmd = new SqlCommand(sql1, sqlConn);
             cmd.ExecuteNonQuery();
-            string sql2 = "insert into CIPMS_JO_WIP_HD (FACTORY_CD, JOB_ORDER_NO, COLOR_CODE, SIZE_CODE, PROCESS_CD, PRODUCTION_LINE_CD,PROCESS_TYPE, PART_CD, WIP, IN_QTY, GARMENT_TYPE, PRODUCTION_FACTORY) select '" + factory + "',b.JOB_ORDER_NO,b.COLOR_CD,b.SIZE_CD,b.NEXT_PROCESS_CD,b.NEXT_PRODUCTION_LINE_CD,'" + processtype + "',b.PART_CD,SUM(a.QTY),SUM(a.QTY),'" + garmenttype + "','" + factory + "' from CIPMS_TRANSFER_DT as a inner join (select c.JOB_ORDER_NO,c.COLOR_CD,c.SIZE_CD,c.PART_CD,d.NEXT_PROCESS_CD,d.NEXT_PRODUCTION_LINE_CD from CIPMS_TRANSFER_DT as c inner join CIPMS_TRANSFER_HD as d on c.DOC_NO=d.DOC_NO where c.DOC_NO in"+barcode+" except select JOB_ORDER_NO,COLOR_CODE,SIZE_CODE,PART_CD,PROCESS_CD,PRODUCTION_LINE_CD from CIPMS_JO_WIP_HD group by JOB_ORDER_NO,COLOR_CODE,SIZE_CODE,PART_CD,PROCESS_CD,PRODUCTION_LINE_CD) as b on a.JOB_ORDER_NO=b.JOB_ORDER_NO and a.COLOR_CD=b.COLOR_CD and a.SIZE_CD=b.SIZE_CD and a.PART_CD=b.PART_CD where a.DOC_NO in"+barcode+" group by b.JOB_ORDER_NO,b.COLOR_CD,b.SIZE_CD,b.PART_CD,b.NEXT_PROCESS_CD,b.NEXT_PRODUCTION_LINE_CD";
+            string sql2 = "insert into CIPMS_JO_WIP_HD (FACTORY_CD, JOB_ORDER_NO, COLOR_CODE, SIZE_CODE, PROCESS_CD, PRODUCTION_LINE_CD,PROCESS_TYPE, PART_CD, WIP, IN_QTY, GARMENT_TYPE, PRODUCTION_FACTORY) select '" + factory + "',b.JOB_ORDER_NO,b.COLOR_CD,b.SIZE_CD,b.NEXT_PROCESS_CD,b.NEXT_PRODUCTION_LINE_CD,'" + processtype + "',b.PART_CD,SUM(a.QTY),SUM(a.QTY),'" + garmenttype + "','" + factory + "' from CIPMS_TRANSFER_DT as a inner join (select c.JOB_ORDER_NO,c.COLOR_CD,c.SIZE_CD,c.PART_CD,d.NEXT_PROCESS_CD,d.NEXT_PRODUCTION_LINE_CD from CIPMS_TRANSFER_DT as c inner join CIPMS_TRANSFER_HD as d on c.DOC_NO=d.DOC_NO where c.DOC_NO in" + barcode + " except select JOB_ORDER_NO,COLOR_CODE,SIZE_CODE,PART_CD,PROCESS_CD,PRODUCTION_LINE_CD from CIPMS_JO_WIP_HD group by JOB_ORDER_NO,COLOR_CODE,SIZE_CODE,PART_CD,PROCESS_CD,PRODUCTION_LINE_CD) as b on a.JOB_ORDER_NO=b.JOB_ORDER_NO and a.COLOR_CD=b.COLOR_CD and a.SIZE_CD=b.SIZE_CD and a.PART_CD=b.PART_CD where a.DOC_NO in" + barcode + " group by b.JOB_ORDER_NO,b.COLOR_CD,b.SIZE_CD,b.PART_CD,b.NEXT_PROCESS_CD,b.NEXT_PRODUCTION_LINE_CD";
             cmd = new SqlCommand(sql2, sqlConn);
             cmd.ExecuteNonQuery();
         }
         public void recwipbundleadd(SqlConnection sqlConn, string trandocno)
         {
-            string sql = "insert into CIPMS_JO_WIP_BUNDLE (STOCK_ID,BUNDLE_NO,WIP,IN_QTY,PART_CD) select a.STOCK_ID,b.BUNDLE_NO,b.QTY,b.QTY,b.PART_CD from CIPMS_JO_WIP_HD as a inner join CIPMS_TRANSFER_HD as c on c.NEXT_PROCESS_CD=a.PROCESS_CD and c.NEXT_PRODUCTION_LINE_CD=a.PRODUCTION_LINE_CD inner join CIPMS_TRANSFER_DT as b on a.JOB_ORDER_NO=b.JOB_ORDER_NO and a.COLOR_CODE=b.COLOR_CD and a.SIZE_CODE=b.SIZE_CD and a.PART_CD=b.PART_CD and b.DOC_NO=c.DOC_NO where b.DOC_NO='"+trandocno+"'";
+            string sql = "insert into CIPMS_JO_WIP_BUNDLE (STOCK_ID,BUNDLE_NO,WIP,IN_QTY,PART_CD) select a.STOCK_ID,b.BUNDLE_NO,b.QTY,b.QTY,b.PART_CD from CIPMS_JO_WIP_HD as a inner join CIPMS_TRANSFER_HD as c on c.NEXT_PROCESS_CD=a.PROCESS_CD and c.NEXT_PRODUCTION_LINE_CD=a.PRODUCTION_LINE_CD inner join CIPMS_TRANSFER_DT as b on a.JOB_ORDER_NO=b.JOB_ORDER_NO and a.COLOR_CODE=b.COLOR_CD and a.SIZE_CODE=b.SIZE_CD and a.PART_CD=b.PART_CD and b.DOC_NO=c.DOC_NO where b.DOC_NO='" + trandocno + "'";
             SqlCommand cmd = new SqlCommand(sql, sqlConn);
             cmd.ExecuteNonQuery();
         }
@@ -1615,7 +1614,7 @@ namespace NameSpace
         {
             SqlCommand sqlComGet = new SqlCommand();
             sqlComGet.Connection = sqlConn;
-            sqlComGet.CommandText = "select distinct top 10 DOC_NO,max(CREATE_DATE)CREATE_DATE from CIPMS_SAVE_AND_QUERY_DOC_NO where CREATE_USER_ID='"+userbarcode+"' and FUNCTION_CD='"+module+"' group by DOC_NO order by CREATE_DATE DESC";
+            sqlComGet.CommandText = "select distinct top 10 DOC_NO,max(CREATE_DATE)CREATE_DATE from CIPMS_SAVE_AND_QUERY_DOC_NO where CREATE_USER_ID='" + userbarcode + "' and FUNCTION_CD='" + module + "' group by DOC_NO order by CREATE_DATE DESC";
             return sqlComGet.ExecuteReader();
         }
         public SqlDataReader reclastsubmit(SqlConnection sqlConn, string barcode)
@@ -1755,7 +1754,7 @@ namespace NameSpace
         }
         public void insertcutbundlereducehd(SqlConnection sqlConn, string docno, string factorycd, string trxdate, string trxtype, string processcd, string joborderno, string garmenttype, string processtype, string productionfactory, string createuserid, string createusergrpid)
         {
-            string sql = "insert into CUT_BUNDLE_REDUCE_HD(DOC_NO,FACTORY_CD,TRX_DATE,TRX_TYPE,PROCESS_CD,JOB_ORDER_NO,GARMENT_TYPE,PROCESS_TYPE,PRODUCTION_FACTORY,CREATE_DATE,CREATE_USER_ID,CREATE_USER_GRP_ID,STATUS) VALUES ('"+docno+"','"+factorycd+"','"+trxdate+"','"+trxtype+"','"+processcd+"','"+joborderno+"','"+garmenttype+"','"+processtype+"','"+productionfactory+"',GETDATE(),'"+createuserid+"','"+factorycd+"','C')";
+            string sql = "insert into CUT_BUNDLE_REDUCE_HD(DOC_NO,FACTORY_CD,TRX_DATE,TRX_TYPE,PROCESS_CD,JOB_ORDER_NO,GARMENT_TYPE,PROCESS_TYPE,PRODUCTION_FACTORY,CREATE_DATE,CREATE_USER_ID,CREATE_USER_GRP_ID,STATUS) VALUES ('" + docno + "','" + factorycd + "','" + trxdate + "','" + trxtype + "','" + processcd + "','" + joborderno + "','" + garmenttype + "','" + processtype + "','" + productionfactory + "',GETDATE(),'" + createuserid + "','" + factorycd + "','C')";
             SqlCommand cmd = new SqlCommand(sql, sqlConn);
             cmd.ExecuteNonQuery();
         }
@@ -1800,7 +1799,7 @@ namespace NameSpace
         {
             SqlCommand sqlComGet = new SqlCommand();
             sqlComGet.Connection = sqlConn;
-            sqlComGet.CommandText = "select DOC_NO from CUT_BUNDLE_REDUCE_HD where DOC_NO='"+newrunningno+"'";
+            sqlComGet.CommandText = "select DOC_NO from CUT_BUNDLE_REDUCE_HD where DOC_NO='" + newrunningno + "'";
             return sqlComGet.ExecuteReader();
         }
         public SqlDataReader reducejo(SqlConnection sqlConn, string barcode)
@@ -1902,7 +1901,7 @@ namespace NameSpace
         {
             SqlCommand sqlComGet = new SqlCommand();
             sqlComGet.Connection = sqlConn;
-            sqlComGet.CommandText = "select CREATE_USER_ID from CIPMS_TRANSFER_HD with (nolock) where DOC_NO='"+docno+"'";
+            sqlComGet.CommandText = "select CREATE_USER_ID from CIPMS_TRANSFER_HD with (nolock) where DOC_NO='" + docno + "'";
             return sqlComGet.ExecuteReader();
         }
         public SqlDataReader ifincarton(SqlConnection sqlConn, string docno)

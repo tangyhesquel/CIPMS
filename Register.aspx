@@ -122,6 +122,7 @@
                 dataType: "json",
                 data: "{ 'factory': '" + fty + "', 'svTYPE': '"+environment+"' }",
                 success: function (data) {
+                    debugger;
                     var result = eval(data.d);
                     var temp = new Array();
                     $(result).each(function (i) {
@@ -308,9 +309,9 @@
                 shiftselecttrans();
 
                 //加载功能
-
+                debugger;
                 accessfunctionload();
-
+                debugger;
                 processload();
                 $('#printtest').hide();
                 //Permission回车监控
@@ -367,7 +368,7 @@
                             temp2[j] = temp1[i];
                     }
                     for (i = 0; i < temp2.length; i++) {
-  
+                        debugger;
                         if (temp2[i] == 'Package') {
                             $('#defaultfunctionselect').append("<option class='module' value='" + temp2[i] + "'>" + globeltranslate.a1 + "</option>");
                         } else if (temp2[i] == 'Matching') {

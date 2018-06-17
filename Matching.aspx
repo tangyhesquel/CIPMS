@@ -498,7 +498,7 @@
                     var h = d.getHours();
                     var m = d.getMinutes();
                     var se = d.getSeconds();
-    
+                    //debugger;
                     docno = sessionStorage.getItem("userbarcode") + vYear + vMon + vDay + h + m + se;
 
                     //语言选择

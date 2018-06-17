@@ -445,8 +445,8 @@ public partial class Printbarcode : System.Web.UI.Page
                     combinebundleinfo.BUNDLE_NO = combinebundleinfo.BUNDLE_NO.Substring(0, 4);
 
                 combinebundleinfo.SIZE = sqlDr["SIZE_CD"].ToString();
-                if (combinebundleinfo.SIZE.Length > 13)
-                    combinebundleinfo.SIZE = combinebundleinfo.SIZE.Substring(0, 13);
+                if (combinebundleinfo.SIZE.Length > 12)
+                    combinebundleinfo.SIZE = combinebundleinfo.SIZE.Substring(0, 12);
 
                 combinebundleinfo.QTY = sqlDr["QTY"].ToString();
                 if (combinebundleinfo.QTY.Length > 8)

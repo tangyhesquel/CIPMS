@@ -73,7 +73,7 @@
 
         //语言翻译函数
         window.language; //全局变量，保存用户选择了哪个json语言文件
-
+        //debugger;
         function translate() {
             //alert("translate");
             $.ajax({
@@ -123,6 +123,7 @@
             //alert("vvv");
         };
         
+        //debugger;
         function querydata()
         {
             var bydate = "false";
@@ -170,7 +171,7 @@
                     });
 
         };
-
+        //debugger;
         function init()
         {
             fty = getUrlParam('FTY');
@@ -271,7 +272,7 @@
                 }
             }
         };
-
+        //debugger;
         function GridInit(dataSource) {
             $("#DataGrid").kendoGrid({
                 toolbar: [
@@ -308,9 +309,9 @@
                     groupHeaderTemplate: "#= value # #= count # 条记录",
                     headerAttributes: {
                         "class": "table-cell",
-                        style: "text-align: center; font-size: 11px"
+                        style: "text-align: center; font-size: 12px"
                     },
-                    attributes: { style: "text-align: center; font-size: 11px" }
+                    attributes: { style: "text-align: center; font-size: 12px" }
 
                 },{
                     title: globeltranslate.PRODUCTION_LINE_CD,
@@ -318,27 +319,27 @@
                     width: 75,
                     headerAttributes: {
                         "class": "table-cell",
-                        style: "text-align: center; font-size: 11px"
+                        style: "text-align: center; font-size: 12px"
                     },
-                    attributes: { style: "text-align: center; font-size: 11px" }
+                    attributes: { style: "text-align: center; font-size: 12px" }
                 },{
                     title: globeltranslate.JOB_ORDER_NO,
                     field: "JOB_ORDER_NO",
                     width: 100,
                     headerAttributes: {
                         "class": "table-cell",
-                        style: "text-align: center; font-size: 11px"
+                        style: "text-align: center; font-size: 12px"
                     },
-                    attributes: { style: "text-align: center; font-size: 11px" }
+                    attributes: { style: "text-align: center; font-size: 12px" }
                 },{
                     title: globeltranslate.COLOR_CD,
                     field: "COLOR_CD",
                     width: 75,
                     headerAttributes: {
                         "class": "table-cell",
-                        style: "text-align: center; font-size: 11px"
+                        style: "text-align: center; font-size: 12px"
                     },
-                    attributes: { style: "text-align: center; font-size: 11px" }
+                    attributes: { style: "text-align: center; font-size: 12px" }
                 },{
                     title: globeltranslate.ORDER_QTY,
                     field: "ORDER_QTY",
@@ -348,9 +349,9 @@
                     groupFooterTemplate: "#= sum #",
                     headerAttributes: {
                         "class": "table-cell",
-                        style: "text-align: center; font-size: 11px"
+                        style: "text-align: center; font-size: 12px"
                     },
-                    attributes: { style: "text-align: center; font-size: 11px" }
+                    attributes: { style: "text-align: center; font-size: 12px" }
                 },{
                     title: globeltranslate.CUT_QTY_TODAY,
                     field: "CUT_QTY_TODAY",
@@ -360,9 +361,9 @@
                     groupFooterTemplate: "#= sum #",
                     headerAttributes: {
                         "class": "table-cell",
-                        style: "text-align: center; font-size: 11px"
+                        style: "text-align: center; font-size: 12px"
                     },
-                    attributes: { style: "text-align: center; font-size: 11px" }
+                    attributes: { style: "text-align: center; font-size: 12px" }
                     
                 },{
                     title: globeltranslate.CUT_QTY_TOTAL,
@@ -373,9 +374,9 @@
                     groupFooterTemplate: "#= sum #",
                     headerAttributes: {
                         "class": "table-cell",
-                        style: "text-align: center; font-size: 11px"
+                        style: "text-align: center; font-size: 12px"
                     },
-                    attributes: { style: "text-align: center; font-size: 11px" }
+                    attributes: { style: "text-align: center; font-size: 12px" }
                 },{
                     title: globeltranslate.REDUCE_QTY_TODAY,
                     field: "REDUCE_QTY_TODAY",
@@ -385,10 +386,10 @@
                     groupFooterTemplate: "#= sum #",
                     headerAttributes: {
                         "class": "table-cell",
-                        style: "text-align: center; font-size: 11px"
+                        style: "text-align: center; font-size: 12px"
                     },
                     hidden: true,
-                    attributes: { style: "text-align: center; font-size: 11px" }
+                    attributes: { style: "text-align: center; font-size: 12px" }
                    
                 },{
                     title: globeltranslate.REDUCE_QTY_TOTAL,
@@ -399,10 +400,10 @@
                     groupFooterTemplate: "#= sum #",
                     headerAttributes: {
                         "class": "table-cell",
-                        style: "text-align: center; font-size: 11px"
+                        style: "text-align: center; font-size: 12px"
                     },
                     hidden: false,
-                    attributes: { style: "text-align: center; font-size: 11px" }
+                    attributes: { style: "text-align: center; font-size: 12px" }
                 },{
                     title: globeltranslate.CUT_OUT_TODAY,
                     field: "CUT_OUT_TODAY",
@@ -412,9 +413,9 @@
                     groupFooterTemplate: "#= sum #",
                     headerAttributes: {
                         "class": "table-cell",
-                        style: "text-align: center; font-size: 11px"
+                        style: "text-align: center; font-size: 12px"
                     },
-                    attributes: { style: "text-align: center; font-size: 11px" }
+                    attributes: { style: "text-align: center; font-size: 12px" }
                 },{
                     title: globeltranslate.CUT_OUT_TOTAL,
                     field: "CUT_OUT_TOTAL",
@@ -424,9 +425,9 @@
                     groupFooterTemplate: "#= sum #",
                     headerAttributes: {
                         "class": "table-cell",
-                        style: "text-align: center; font-size: 11px"
+                        style: "text-align: center; font-size: 12px"
                     },
-                    attributes: { style: "text-align: center; font-size: 11px" }
+                    attributes: { style: "text-align: center; font-size: 12px" }
                 },{
                     title: globeltranslate.CUT_OUT_WIP,
                     field: "CUT_OUT_WIP",
@@ -436,9 +437,9 @@
                     groupFooterTemplate: "#= sum #",
                     headerAttributes: {
                         "class": "table-cell",
-                        style: "text-align: center; font-size: 11px"
+                        style: "text-align: center; font-size: 12px"
                     },
-                    attributes: { style: "text-align: center; font-size: 11px" }
+                    attributes: { style: "text-align: center; font-size: 12px" }
                 },{
                     title: globeltranslate.PRT_IN_TODAY,
                     field: "PRT_IN_TODAY",
@@ -448,9 +449,9 @@
                     groupFooterTemplate: "#= sum #",
                     headerAttributes: {
                         "class": "table-cell",
-                        style: "text-align: center; font-size: 11px"
+                        style: "text-align: center; font-size: 12px"
                     },
-                    attributes: { style: "text-align: center; font-size: 11px" }
+                    attributes: { style: "text-align: center; font-size: 12px" }
                 },{
                     title: globeltranslate.PRT_IN_TOTAL,
                     field: "PRT_IN_TOTAL",
@@ -460,9 +461,9 @@
                     groupFooterTemplate: "#= sum #",
                     headerAttributes: {
                         "class": "table-cell",
-                        style: "text-align: center; font-size: 11px"
+                        style: "text-align: center; font-size: 12px"
                     },
-                    attributes: { style: "text-align: center; font-size: 11px" }
+                    attributes: { style: "text-align: center; font-size: 12px" }
                 },{
                     title: globeltranslate.PRT_OUT_TODAY,
                     field: "PRT_OUT_TODAY",
@@ -472,9 +473,9 @@
                     groupFooterTemplate: "#= sum #",
                     headerAttributes: {
                         "class": "table-cell",
-                        style: "text-align: center; font-size: 11px"
+                        style: "text-align: center; font-size: 12px"
                     },
-                    attributes: { style: "text-align: center; font-size: 11px" }
+                    attributes: { style: "text-align: center; font-size: 12px" }
                 },{
                     title: globeltranslate.PRT_OUT_TOTAL,
                     field: "PRT_OUT_TOTAL",
@@ -484,9 +485,9 @@
                     groupFooterTemplate: "#= sum #",
                     headerAttributes: {
                         "class": "table-cell",
-                        style: "text-align: center; font-size: 11px"
+                        style: "text-align: center; font-size: 12px"
                     },
-                    attributes: { style: "text-align: center; font-size: 11px" }
+                    attributes: { style: "text-align: center; font-size: 12px" }
                 },{
                     title: globeltranslate.PRT_IN_OUT_WIP,
                     field: "PRT_IN_OUT_WIP",
@@ -496,9 +497,9 @@
                     groupFooterTemplate: "#= sum #",
                     headerAttributes: {
                         "class": "table-cell",
-                        style: "text-align: center; font-size: 11px"
+                        style: "text-align: center; font-size: 12px"
                     },
-                    attributes: { style: "text-align: center; font-size: 11px" }
+                    attributes: { style: "text-align: center; font-size: 12px" }
                 },{
                     title: globeltranslate.EMB_OUT_TODAY,
                     field: "EMB_OUT_TODAY",
@@ -508,9 +509,9 @@
                     groupFooterTemplate: "#= sum #",
                     headerAttributes: {
                         "class": "table-cell",
-                        style: "text-align: center; font-size: 11px"
+                        style: "text-align: center; font-size: 12px"
                     },
-                    attributes: { style: "text-align: center; font-size: 11px" }
+                    attributes: { style: "text-align: center; font-size: 12px" }
                 },{
                     title: globeltranslate.EMB_OUT_TOTAL,
                     field: "EMB_OUT_TOTAL",
@@ -520,9 +521,9 @@
                     groupFooterTemplate: "#= sum #",
                     headerAttributes: {
                         "class": "table-cell",
-                        style: "text-align: center; font-size: 11px"
+                        style: "text-align: center; font-size: 12px"
                     },
-                    attributes: { style: "text-align: center; font-size: 11px" }
+                    attributes: { style: "text-align: center; font-size: 12px" }
                 },{
                     title: globeltranslate.EMB_OUT_WIP,
                     field: "EMB_OUT_WIP",
@@ -532,9 +533,9 @@
                     groupFooterTemplate: "#= sum #",
                     headerAttributes: {
                         "class": "table-cell",
-                        style: "text-align: center; font-size: 11px"
+                        style: "text-align: center; font-size: 12px"
                     },
-                    attributes: { style: "text-align: center; font-size: 11px" }
+                    attributes: { style: "text-align: center; font-size: 12px" }
                 },{
                     title: globeltranslate.FUSING_OUT_TODAY,
                     field: "FUSING_OUT_TODAY",
@@ -544,9 +545,9 @@
                     groupFooterTemplate: "#= sum #",
                     headerAttributes: {
                         "class": "table-cell",
-                        style: "text-align: center; font-size: 11px"
+                        style: "text-align: center; font-size: 12px"
                     },
-                    attributes: { style: "text-align: center; font-size: 11px" }
+                    attributes: { style: "text-align: center; font-size: 12px" }
                 },{
                     title: globeltranslate.FUSING_OUT_TOTAL,
                     field: "FUSING_OUT_TOTAL",
@@ -556,9 +557,9 @@
                     groupFooterTemplate: "#= sum #",
                     headerAttributes: {
                         "class": "table-cell",
-                        style: "text-align: center; font-size: 11px"
+                        style: "text-align: center; font-size: 12px"
                     },
-                    attributes: { style: "text-align: center; font-size: 11px" }
+                    attributes: { style: "text-align: center; font-size: 12px" }
                 },{
                     title: globeltranslate.FUSING_OUT_WIP,
                     field: "FUSING_OUT_WIP",
@@ -568,9 +569,9 @@
                     groupFooterTemplate: "#= sum #",
                     headerAttributes: {
                         "class": "table-cell",
-                        style: "text-align: center; font-size: 11px"
+                        style: "text-align: center; font-size: 12px"
                     },
-                    attributes: { style: "text-align: center; font-size: 11px" }
+                    attributes: { style: "text-align: center; font-size: 12px" }
                 },{
                     title: globeltranslate.MATCHING_OUT_TODAY,
                     field: "MATCHING_OUT_TODAY",
@@ -580,9 +581,9 @@
                     groupFooterTemplate: "#= sum #",
                     headerAttributes: {
                         "class": "table-cell",
-                        style: "text-align: center; font-size: 11px"
+                        style: "text-align: center; font-size: 12px"
                     },
-                    attributes: { style: "text-align: center; font-size: 11px" }
+                    attributes: { style: "text-align: center; font-size: 12px" }
                 },{
                     title: globeltranslate.MATCHING_OUT_TOTAL,
                     field: "MATCHING_OUT_TOTAL",
@@ -592,9 +593,9 @@
                     groupFooterTemplate: "#= sum #",
                     headerAttributes: {
                         "class": "table-cell",
-                        style: "text-align: center; font-size: 11px"
+                        style: "text-align: center; font-size: 12px"
                     },
-                    attributes: { style: "text-align: center; font-size: 11px" }
+                    attributes: { style: "text-align: center; font-size: 12px" }
                 },{
                     title: globeltranslate.MATCHING_OUT_WIP,
                     field: "MATCHING_OUT_WIP",
@@ -604,9 +605,9 @@
                     groupFooterTemplate: "#= sum #",
                     headerAttributes: {
                         "class": "table-cell",
-                        style: "text-align: center; font-size: 11px"
+                        style: "text-align: center; font-size: 12px"
                     },
-                    attributes: { style: "text-align: center; font-size: 11px" }
+                    attributes: { style: "text-align: center; font-size: 12px" }
                 },{
                     title: globeltranslate.DC_BEFORE_WIP,
                     field: "DC_BEFORE_WIP",
@@ -616,9 +617,9 @@
                     groupFooterTemplate: "#= sum #",
                     headerAttributes: {
                         "class": "table-cell",
-                        style: "text-align: center; font-size: 11px"
+                        style: "text-align: center; font-size: 12px"
                     },
-                    attributes: { style: "text-align: center; font-size: 11px" }
+                    attributes: { style: "text-align: center; font-size: 12px" }
                 },{
                     title: globeltranslate.DC_SEW_S_TOTAL,
                     field: "DC_SEW_S_TOTAL",
@@ -628,9 +629,9 @@
                     groupFooterTemplate: "#= sum #",
                     headerAttributes: {
                         "class": "table-cell",
-                        style: "text-align: center; font-size: 11px"
+                        style: "text-align: center; font-size: 12px"
                     },
-                    attributes: { style: "text-align: center; font-size: 11px" }
+                    attributes: { style: "text-align: center; font-size: 12px" }
                 },{
                     title: globeltranslate.DC_SEW_C,
                     field: "DC_SEW_C",
@@ -640,9 +641,9 @@
                     groupFooterTemplate: "#= sum #",
                     headerAttributes: {
                         "class": "table-cell",
-                        style: "text-align: center; font-size: 11px"
+                        style: "text-align: center; font-size: 12px"
                     },
-                    attributes: { style: "text-align: center; font-size: 11px" }
+                    attributes: { style: "text-align: center; font-size: 12px" }
                 },{
                     title: globeltranslate.DC_SEW_C_TOTAL,
                     field: "DC_SEW_C_TOTAL",
@@ -652,9 +653,9 @@
                     groupFooterTemplate: "#= sum #",
                     headerAttributes: {
                         "class": "table-cell",
-                        style: "text-align: center; font-size: 11px"
+                        style: "text-align: center; font-size: 12px"
                     },
-                    attributes: { style: "text-align: center; font-size: 11px" }
+                    attributes: { style: "text-align: center; font-size: 12px" }
                 },{
                     title: globeltranslate.TWIP,
                     field: "TWIP",
@@ -664,18 +665,18 @@
                     groupFooterTemplate: "#= sum #",
                     headerAttributes: {
                         "class": "table-cell",
-                        style: "text-align: center; font-size: 11px"
+                        style: "text-align: center; font-size: 12px"
                     },
-                    attributes: { style: "text-align: center; font-size: 11px" }
+                    attributes: { style: "text-align: center; font-size: 12px" }
                 },{
                     title: globeltranslate.DCT,
                     field: "DCT",
                     width: 70,
                     headerAttributes: {
                         "class": "table-cell",
-                        style: "text-align: center; font-size: 11px"
+                        style: "text-align: center; font-size: 12px"
                     },
-                    attributes: { style: "text-align: center; font-size: 11px" }
+                    attributes: { style: "text-align: center; font-size: 12px" }
                 },{
                     title: globeltranslate.CUT_QTY,
                     field: "CUT_QTY",
@@ -685,7 +686,7 @@
                     groupFooterTemplate: "#= sum #",
                     headerAttributes: {
                         "class": "table-cell",
-                        style: "text-align: center; font-size: 11px"
+                        style: "text-align: center; font-size: 12px"
                     },
                     hidden: true
                 },{
@@ -694,10 +695,10 @@
                     width: 75,
                     headerAttributes: {
                         "class": "table-cell",
-                        style: "text-align: center; font-size: 11px"
+                        style: "text-align: center; font-size: 12px"
                     },
                     hidden: true,
-                    attributes: { style: "text-align: center; font-size: 11px" }
+                    attributes: { style: "text-align: center; font-size: 12px" }
                 }
                 ],
                 groupable: true,
@@ -708,7 +709,7 @@
 
             });
         }
-
+        //debugger;
         function RefreshGridData(datasource) {
             //alert(JSON.stringify(DataGrid_Datasource));
             var GriddataSource = new kendo.data.DataSource({
@@ -788,7 +789,7 @@
             GriddataSource.read();
             GriddataSource.refresh;
         }
-
+        //debugger;
         $(function () {
             init();
             NotificationInit();

@@ -79,6 +79,7 @@
             //$('#printcontent').html(content);
             //$('#printcontent').jqprint();
             ////window.parent.closewin();
+            //debugger;
             //this.closed;
 
             //function GetQueryString(sProp) {

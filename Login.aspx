@@ -36,7 +36,7 @@
         //翻译语言函数
         window.language;
         function translate() {
-            //   ajaxOptions Unexpected token < in JSON at position 4 
+            // debugger;   ajaxOptions Unexpected token < in JSON at position 4 
            
               $.ajax({
                 type:"GET",
@@ -65,7 +65,7 @@
                 //    alert(xhr.status);
                 //    alert(thrownError);
                 //    alert("Failure! Please check your network and try again! Wrong Code:001")
-                //    //
+                //    //debugger;
                 //}
             });
 

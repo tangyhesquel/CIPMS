@@ -152,12 +152,12 @@ namespace NameSpace
         {
             SqlCommand sqlComGet = new SqlCommand();
             sqlComGet.Connection = sqlConn;
-            sqlComGet.CommandText = "select MIN(MATCHING-OUT_QTY)as QTY from (select a.BARCODE,a.PART_CD,c.MATCHING,c.OUT_QTY from CIPMS_BUNDLE_FOR_SCANNING as a with (nolock)  inner join CIPMS_JO_WIP_HD as b with (nolock) on a.JOB_ORDER_NO=b.JOB_ORDER_NO and a.COLOR_CD=b.COLOR_CODE and a.SIZE_CD=b.SIZE_CODE and a.PART_CD=b.PART_CD and a.PROCESS_CD=b.PROCESS_CD and a.PRODUCTION_LINE_CD=b.PRODUCTION_LINE_CD and a.PROCESS_TYPE=b.PROCESS_TYPE inner join CIPMS_JO_WIP_BUNDLE as c with (nolock) on b.STOCK_ID=c.STOCK_ID and a.BUNDLE_NO=c.BUNDLE_NO inner join CIPMS_USER_SCANNING_DFT as d with (nolock) on a.BUNDLE_ID=d.BUNDLE_ID where d.DOC_NO='" + docno + "' and d.USER_BARCODE='" + userbarcode + "')as e group by BARCODE";
+            sqlComGet.CommandText = "select MIN(MATCHING-OUT_QTY)as QTY from (select a.BARCODE,a.PART_CD,c.MATCHING,c.OUT_QTY from CIPMS_BUNDLE_FOR_SCANNING as a with (nolock)  inner join CIPMS_JO_WIP_HD as b with (nolock) on a.JOB_ORDER_NO=b.JOB_ORDER_NO and a.COLOR_CD=b.COLOR_CODE and a.SIZE_CD=b.SIZE_CODE and a.PART_CD=b.PART_CD and a.PROCESS_CD=b.PROCESS_CD and a.PRODUCTION_LINE_CD=b.PRODUCTION_LINE_CD inner join CIPMS_JO_WIP_BUNDLE as c with (nolock) on b.STOCK_ID=c.STOCK_ID and a.BUNDLE_NO=c.BUNDLE_NO inner join CIPMS_USER_SCANNING_DFT as d with (nolock) on a.BUNDLE_ID=d.BUNDLE_ID where d.DOC_NO='" + docno + "' and d.USER_BARCODE='" + userbarcode + "')as e group by BARCODE";
             return sqlComGet.ExecuteReader();
         }
         public void unscaninsert(SqlConnection sqlConn, string bundlebarcode, string docno, string userbarcode, string functioncd)
         {
-            string sql = "insert into CIPMS_USER_SCANNING_DFT (BUNDLE_ID,DOC_NO,USER_BARCODE,BUNDLE_BARCODE,PART_CD,FUNCTION_CD,CREATE_DATE) select BUNDLE_ID,'" + docno + "','" + userbarcode + "',BARCODE,PART_CD,'" + functioncd + "',GETDATE() from CIPMS_BUNDLE_FOR_SCANNING where BARCODE='" + bundlebarcode + "' and BUNDLE_ID not in (select BUNDLE_ID from CIPMS_USER_SCANNING_DFT where DOC_NO='" + docno + "' and USER_BARCODE='" + userbarcode + "') ORDER BY BARCODE";
+            string sql = "insert into CIPMS_USER_SCANNING_DFT (BUNDLE_ID,DOC_NO,USER_BARCODE,BUNDLE_BARCODE,PART_CD,FUNCTION_CD,CREATE_DATE) select BUNDLE_ID,'" + docno + "','" + userbarcode + "',BARCODE,PART_CD,'" + functioncd + "',GETDATE() from CIPMS_BUNDLE_FOR_SCANNING  (nolock) where BARCODE='" + bundlebarcode + "' and BUNDLE_ID not in (select BUNDLE_ID from CIPMS_USER_SCANNING_DFT (nolock) where DOC_NO='" + docno + "' and USER_BARCODE='" + userbarcode + "') ORDER BY BARCODE";
             SqlCommand cmd = new SqlCommand(sql, sqlConn);
             cmd.ExecuteNonQuery();
         }

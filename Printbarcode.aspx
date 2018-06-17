@@ -757,11 +757,10 @@
         html = html + "   <tr>";
         html = html + "   <td><div style='font-size:13px;line-height:1.3;'>床次:<span style='font-size:13px;line-height:1.3;'>" + o.LAY_NO + "</span></div></td>";
         html = html + "   </tr>";
-        html = html + "   <tr>";//o.SIZE
+        html = html + "   <tr>";
         html = html + "   <td><div style='font-size:13px;line-height:1.3;'>尺码:<span style='font-size:13px;line-height:1.4;'>" + o.SIZE + "</span></div></td>";
         html = html + "   </tr>";
-        //alert(o.SIZE);
-        //debugger;
+
         html = html + "   <tr>";
         html = html + "   <td><div style='font-size:13px;line-height:1.3;'>数量:<span style='font-size:14px;line-height:1.3;'>" + o.QTY + "</span></div></td>";
         html = html + "   </tr>";
@@ -771,11 +770,12 @@
         html = html + "   <td width='24%'>";
         html = html + "   <table>";
         html = html + "   <tr>";
-        html = html + "   <td><div style='font-size:50px;line-height:1;text-align:left'>" + o.BUNDLE_NO + "</div></td>";
+        //45--0611
+        html = html + "   <td><div style='font-size:45px;line-height:1;text-align:left'>" + o.BUNDLE_NO + "</div></td>";
         html = html + "   </tr>";
         html = html + "   </table>";
         html = html + "   </td>";
-        //34
+
         html = html + "   <td width='26%'></td>";
         html = html + "   </tr>";
         html = html + "   </table>";
@@ -881,4 +881,5 @@
         return html;
     }
     </script>
+
 

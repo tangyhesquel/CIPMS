@@ -1123,6 +1123,7 @@
             var groupbylineModel = null;
             var groupbyjodata = [];
             var groupbyjoModel = null;
+            //debugger;
 
             function cleargrid()
             {
@@ -1152,6 +1153,7 @@
             }
 
             function Query() {
+                // debugger;
                 //var s;
                 //s = "{ 'factory': '" + fty + "', 'svTYPE': '" + environment + "', 'go': '" + $('#go').data("kendoComboBox").value() + "', 'jo': '" + $('#jo').data("kendoComboBox").value() + "', 'process': '" + $('#process').data("kendoComboBox").value() + "', 'bybundle': '" + bybundle + "', 'bypart': '" + bypart + "', 'bycolor': '" + bycolor + "', 'bysize': '" + bysize + "', 'bysewline': '" + bysewline + "', 'byprocesspcs': '" + byprocesspcs + "' }";
                 //alert(s);
@@ -1194,6 +1196,7 @@
                             })
                             grid.setDataSource(bundlelistModel);
 
+                            //debugger;
                             showfields(grid,"T");
 
                             if (result[0].SUCCESS == true) {
@@ -1231,7 +1234,7 @@
                                     bundlelistdata1 = [];
                                     bundlelistModel1 = null;
                                     bundlelistdata1 = result[0].TABLE3;
-              
+                                    //debugger;
                                     if (bundlelistdata1.length == 0) {
                                         $('#bundlegrid1').hide();
                                     }

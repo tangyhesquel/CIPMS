@@ -136,6 +136,7 @@ public class WipAndOutputSql
             //query=query+" CUT_OUT_TODAY,CUT_OUT_TOTAL,CUT_OUT_WIP,	 PRT_IN_TODAY,PRT_IN_TOTAL,PRT_OUT_TODAY,PRT_OUT_TOTAL,PRT_IN_OUT_WIP,EMB_OUT_TODAY,";
             //query=query+" EMB_OUT_TOTAL,EMB_OUT_WIP,FUSING_OUT_TODAY,FUSING_OUT_TOTAL,FUSING_OUT_WIP,MATCHING_OUT_TODAY,MATCHING_OUT_TOTAL,MATCHING_OUT_WIP,DC_BEFORE_WIP,";
             //query=query+" DC_SEW_S_TOTAL,DC_SEW_C,DC_SEW_C_TOTAL,TWIP,DCT,ORDER_QTY,CUT_QTY,SEQ from DATAPROCESS ";
+            db.Database.CommandTimeout = 3000;
             return db.Database.SqlQuery<WipAndOutputData>(query).ToList();
         }
         catch (Exception ex)

@@ -603,7 +603,7 @@
 
             stTableObj = headerTitle.tableConent.concat(excelContent.tableConent);
             autoWidthNum = headerTitle.tableColumnWidth.concat(excelContent.tableColumnWidth);
-
+           debugger;
             var headerSheets = {
                 columns: autoWidthNum,
                 title: "ALL",
@@ -631,13 +631,16 @@
 
             stTableObj1 = headerTitle1.tableConent.concat(excelContent1.tableConent);
             autoWidthNum1 = headerTitle1.tableColumnWidth.concat(excelContent1.tableColumnWidth);
-      
+            debugger;
+
+
             var headerTitle2 = loopTable("jotabletitle", true,"thead tr","th");
             var excelContent2 = loopTable("jotable", false, "tbody tr", "td");
 
             stTableObj2 = headerTitle2.tableConent.concat(excelContent2.tableConent);
             autoWidthNum2 = headerTitle2.tableColumnWidth.concat(excelContent2.tableColumnWidth);
 
+            debugger;
             var headerSheets1 = {
                 columns: autoWidthNum1,
                 title: "Line level WIP",
