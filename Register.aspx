@@ -164,6 +164,8 @@
                             $('#functionselect').append("<optgroup class='group' value='" + value + "' id='" + value + "' label='" + globeltranslate.a31 + "'></optgroup>");
                         } else if (value == 'Printsparecode') {
                             $('#functionselect').append("<optgroup class='group' value='" + value + "' id='" + value + "' label='" + globeltranslate.a34 + "'></optgroup>");
+                        } else if (value == 'WipAndOutputNew') {
+                            $('#functionselect').append("<optgroup class='group' value='" + value + "' id='" + value + "' label='" + globeltranslate.a36 + "'></optgroup>");
                         }
                     });
                     $(result).each(function (i) {
@@ -211,8 +213,9 @@
                                     $(this).append("<option class='func' value='" + result[i].ID + "'>" + globeltranslate.a33 + "</option>");
                                 } else if (result[i].FUNCTION_ENG == 'PrintSpareCode') {
                                     $(this).append("<option class='func' value='" + result[i].ID + "'>" + globeltranslate.a35 + "</option>");
+                                } else if (result[i].FUNCTION_ENG == 'WipAndOutputNew') {
+                                    $(this).append("<option class='func' value='" + result[i].ID + "'>" + globeltranslate.a37 + "</option>");
                                 }
-
                             }
                         });
                         modules[result[i].ID] = result[i].MODULE;
@@ -397,6 +400,8 @@
                             $('#defaultfunctionselect').append("<option class='module' value='" + temp2[i] + "'>" + globeltranslate.a31 + "</option>");
                         } else if (temp2[i] == 'Printsparecode') {
                             $('#defaultfunctionselect').append("<option class='module' value='" + temp2[i] + "'>" + globeltranslate.a34 + "</option>");
+                        } else if (temp2[i] == 'WipAndOutputNew') {
+                            $('#defaultfunctionselect').append("<option class='module' value='" + temp2[i] + "'>" + globeltranslate.a36 + "</option>");
                         }
                     }
                     $('#defaultfunctionselect').selectmenu('refresh');
@@ -492,6 +497,8 @@
                                             $('#defaultfunctionselect').append("<option class='module' value='" + module[i] + "'>" + globeltranslate.a32 + "</option>");
                                         } else if (module[i] == 'BarcodeInquiry') {
                                             $('#defaultfunctionselect').append("<option class='module' value='" + module[i] + "'>" + globeltranslate.a33 + "</option>");
+                                        } else if (module[i] == 'WipAndOutputNew') {
+                                            $('#defaultfunctionselect').append("<option class='module' value='" + module[i] + "'>" + globeltranslate.a36 + "</option>");
                                         }
                                     });
                                     $('.module').each(function () {

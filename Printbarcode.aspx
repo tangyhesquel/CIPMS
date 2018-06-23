@@ -393,12 +393,12 @@
                                             if (fty_cd.toUpperCase() == "GEG") {
                                                 //html = "<div style='height:3.9cm;line-height:1.2;'><table style='width:100%'><tr style='width:100%'><td width='65%'><table style='width:100%'><tr style='width:100%'><td width='50%'><div style='font-size:15px; font-weight:bolder;line-height:1.2;'>" + o.BUNDLE_BARCODE + "</div></td><td width='50%'><div style='font-size:13px;line-height:1.2;'>" + o.DATE + "</div></td></tr><tr style='width:100%'><td width='50%'><div style='font-size:13px;line-height:1.2;'>客户:" + o.CLIENT + "</div></td><td width='50%'><div style='font-size:13px;line-height:1.2;'>款式:" + o.STYLE_NO + "</div></td></tr><tr style='width:100%'><td width='50%'><div style='font-size:14px;line-height:1.2;'>制单:" + o.JOB_ORDER_NO + "</div></td><td width='50%'><div style='font-size:13px;line-height:1.2;'>制单数:" + o.CUT_QTY + "</div></td></tr><tr style='width:100%'><td width='35%'><div style='font-size:13px;line-height:1.2;'>颜色:" + o.COLOR + "</div></td><td width='75%'><div style='font-size:13px;line-height:1.2;'>扎号:</div></td></tr></table>  <table style='width:100%'><tr style='width:100%'><td width='35%'><table style='margin-left:-4px; margin-top: -5px;'><tr><td><div style='font-size:13px;line-height:1.2;'>床次:" + o.LAY_NO + "</div></td></tr><tr><td><div style='font-size:15px;line-height:1.2;'>尺码:<span style='font-size:20px;line-height:1.2;'>" + o.SIZE + "</span></div></td></tr><tr><td><div style='font-size:13px;line-height:1.2;'>数量:<span style='font-size:13px;line-height:1.2;'>" + o.QTY + "</span></div></td></tr></table></td><td width='75%'><table><tr><td><div style='font-size:50px;line-height:1;text-align:left'>" + o.BUNDLE_NO + "</div></td></tr></table></td><td width='34%'></td></tr></table></td><td width='35%'><div id='bundleno" + i.toString() + "'></div></td></tr></table></div><div style='height:1.180cm;line-height:1.2;'><table style='width:100%'><tr style='width:100%'><td width='20%'><div style='font-size:13px;line-height:1.2;'>组别:" + o.PRODUCTION_LINE + "</div></td><td width='80%'><div style='font-size:13px;line-height:1.2;'>幅位:" + o.PART + "</div></td></tr></table>  <table style='width:100%; margin-top: -6px;'><tr style='width:100%'><td width='11%'><div style='font-size:13px;line-height:1.2;'>唛架" + o.MARKERS + "</div></td><td width='11%'><div style='font-size:13px;line-height:1.2;'>纸样" + o.PATTERN_NO + "</div></td><td width='11%'><div style='font-size:13px;line-height:1.2;'>色级" + o.SHADE_LOT + "</div></td><td width='67%'><div style='font-size:13px;line-height:1.2;'>缸号:" + o.BATCH_NO + "</div></td></tr></table></div>";
                                                 //tangyh 20170921
-                                                html = Print_GEG_HTML(i, o);
+                                                html = Print_GEG_HTML(i, o, "");
                                             } else {
 
                                                 //html = "<div style='height:3.9cm;line-height:1.3;'><table style='width:100%'><tr style='width:100%'><td width='65%'><table style='width:100%'><tr style='width:100%'><td width='50%'><div style='font-size:15px; font-weight:bolder;line-height:1.3;'>" + o.BUNDLE_BARCODE + "</div></td><td width='50%'><div style='font-size:13px;line-height:1.3;'>" + o.DATE + "</div></td></tr><tr style='width:100%'><td width='50%'><div style='font-size:13px;line-height:1.3;'>客户:" + o.CLIENT + "</div></td><td width='50%'><div style='font-size:13px;line-height:1.3;'>款式:" + o.STYLE_NO + "</div></td></tr><tr style='width:100%'><td width='50%'><div style='font-size:15px;line-height:1.3;'>制单:" + o.JOB_ORDER_NO + "</div></td><td width='50%'><div style='font-size:13px;line-height:1.3;'>制单数:" + o.CUT_QTY + "</div></td></tr><tr style='width:100%'><td width='50%'><div style='font-size:13px;line-height:1.3;'>颜色:" + o.COLOR + "</div></td><td width='50%'><div style='font-size:13px;line-height:1.3;'>扎号:</div></td></tr></table><table style='width:100%'><tr style='width:100%'><td width='33%'><table style='margin-left:-4px; margin-top: -5px;'><tr><td><div style='font-size:13px;line-height:1.3;'>床次:" + o.LAY_NO + "</div></td></tr><tr><td><div style='font-size:13px;line-height:1.3;'>尺码:<span style='font-size:13px;line-height:1.3;'>" + o.SIZE + "</span></div></td></tr><tr><td><div style='font-size:13px;line-height:1.3;'>数量:<span style='font-size:13px;line-height:1.3;'>" + o.QTY + "</span></div></td></tr></table></td><td width='33%'><table><tr><td><div style='font-size:50px;line-height:1;text-align:left'>" + o.BUNDLE_NO + "</div></td></tr></table></td><td width='34%'></td></tr></table></td><td width='35%'><div id='bundleno" + i.toString() + "'></div></td></tr></table></div><div style='height:1.180cm;line-height:1.3;'><table style='width:100%'><tr style='width:100%'><td width='35%'><div style='font-size:13px;line-height:1.3;'>组别:" + o.PRODUCTION_LINE + "</div></td><td width='65%'><div style='font-size:13px;line-height:1.3;'>幅位:" + o.PART + "</div></td></tr></table>  <table style='width:100%; margin-top: -8px;'><tr style='width:100%'><td width='20%'><div style='font-size:13px;line-height:1.3;'>唛架:" + o.MARKERS + "</div></td><td width='20%'><div style='font-size:13px;line-height:1.3;'>纸样" + o.PATTERN_NO + "</div></td><td width='20%'><div style='font-size:13px;line-height:1.3;'>色级:" + o.SHADE_LOT + "</div></td><td width='40%'><div style='font-size:13px;line-height:1.3;'>缸号:" + o.BATCH_NO + "</div></td></tr></table></div>";
                                                 //tangyh 20170921
-                                                html = Print_YMG_HTML(i, o);
+                                                html = Print_YMG_HTML(i, o, "");
                                             }
 
 
@@ -723,8 +723,8 @@
 <script>
 
     //tangyh 20170921
-    function Print_YMG_HTML(i, o) {
-        html = "";
+    function Print_YMG_HTML(i, o, printPartFlag) {
+        var html = "";
         html = html + "   <div style='height:3.9cm;line-height:1.3;'>";
         html = html + "   <table style='width:100%'>";
         html = html + "   <tr style='width:100%'>";
@@ -791,7 +791,7 @@
         html = html + "   <table style='width:100%'>";
         html = html + "   <tr style='width:100%'>";
         html = html + "   <td width='35%'><div style='font-size:13px;line-height:1.3;'>组别:" + o.PRODUCTION_LINE + "</div></td>";
-        html = html + "   <td width='65%'><div style='font-size:13px;line-height:1.3;'>幅位:" + o.PART + "</div></td>";
+        html = html + "   <td width='65%'><div style='font-size:13px;line-height:1.3;'>幅位:" + o.PART + printPartFlag + "</div></td>";
         html = html + "   </tr>";
         html = html + "   </table>  ";
         html = html + "   <table style='width:100%; margin-top: -8px;'>";
@@ -807,8 +807,8 @@
     }
 
 
-    function Print_GEG_HTML(i, o) {
-        html = "";
+    function Print_GEG_HTML(i, o, printPartFlag) {
+        var html = "";
         html = html + "   <div style='height:3.9cm;line-height:1.2;'>";
         html = html + "   <table style='width:100%'>";
         html = html + "   <tr style='width:100%'>";
@@ -827,13 +827,13 @@
         html = html + "   <td width='50%'><div style='font-size:13px;line-height:1.2;'>制单数:" + o.CUT_QTY + "</div></td>";
         html = html + "   </tr>";
         html = html + "   <tr style='width:100%'>";
-        html = html + "   <td width='30%'><div style='font-size:13px;line-height:1.2;'>颜色:" + o.COLOR + "</div></td>";
-        html = html + "   <td width='70%'><div style='font-size:13px;line-height:1.2;'>扎号:</div></td>";
+        html = html + "   <td width='50%'><div style='font-size:13px;line-height:1.2;'>颜色:" + o.COLOR + "</div></td>";
+        html = html + "   <td width='50%'><div style='font-size:13px;line-height:1.2;'>扎号:</div></td>";
         html = html + "   </tr>";
         html = html + "   </table>";
         html = html + "   <table style='width:100%'>";
         html = html + "   <tr style='width:100%'>";
-        html = html + "   <td width='30%'><table style='margin-left:-4px; margin-top: -5px;'>";
+        html = html + "   <td width='50%'><table style='margin-left:-4px; margin-top: -5px;'>";
         html = html + "   <tr>";
         html = html + "   <td><div style='font-size:13px;line-height:1.2;'>床次:" + o.LAY_NO + "</div></td>";
         html = html + "   </tr>";
@@ -845,7 +845,7 @@
         html = html + "   </tr>";
         html = html + "   </table>";
         html = html + "   </td>";
-        html = html + "   <td width='70%'>";
+        html = html + "   <td width='50%'>";
         html = html + "   <table>";
         html = html + "   <tr>";
         html = html + "   <td><div style='font-size:50px;line-height:1;text-align:left'>" + o.BUNDLE_NO + "</div></td>";
@@ -862,11 +862,11 @@
         html = html + "   </tr>";
         html = html + "   </table>";
         html = html + "   </div>";
-        html = html + "   <div style='height:1.180cm;line-height:1.2;margin-top: 1px;'>";
+        html = html + "   <div style='height:1.180cm;line-height:1.2;'>";
         html = html + "   <table style='width:100%'>";
         html = html + "   <tr style='width:100%'>";
         html = html + "   <td width='20%'><div style='font-size:13px;line-height:1.2;'>组别:" + o.PRODUCTION_LINE + "</div></td>";
-        html = html + "   <td width='80%'><div style='font-size:13px;line-height:1.2;'>幅位:" + o.PART + "</div></td>";
+        html = html + "   <td width='80%'><div style='font-size:13px;line-height:1.2;'>幅位:" + o.PART + printPartFlag + "</div></td>";
         html = html + "   </tr>";
         html = html + "   </table>  ";
         html = html + "   <table style='width:100%; margin-top: -6px;'>";

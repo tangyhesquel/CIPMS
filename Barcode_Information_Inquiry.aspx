@@ -117,6 +117,7 @@
                     $('#lbl_title').html(globeltranslate.lbl_title);
 
                     $('#printsparebarcodea').html(globeltranslate.printsparebarcodea);
+                    $('#wipandoutputlia').html(globeltranslate.wipandoutputlia);
                     initdocnogrid();
 
                     kendo.ui.progress($("#loading"), false);
@@ -154,6 +155,7 @@
                     $('#lbl_business').html(commonglobeltranslate.lbl_business);
                     $('#lbl_report').html(commonglobeltranslate.lbl_report);
                     $('#printsparebarcodea').html(commonglobeltranslate.printsparebarcodea);
+                    $('#wipandoutputlia').html(commonglobeltranslate.wipandoutputlia);
                     kendo.ui.progress($("#loading"), false);
                 }
             });
@@ -793,6 +795,7 @@
                     <li id="bundleinputli">
                         <a id="btn_bundleinput" onclick="pageredirect('bundleinput')" data-transition="none"></a>
                     </li>
+                    
                 </ul>
             </li>
             <li><label id="lbl_report"></label>
@@ -812,6 +815,11 @@
                     <li id="bundleorcartonli">
                         <a id="btn_bundleorcartoninquiry" onclick="pageredirect('bundleorcarton')" data-transition="none"></a>
                     </li>
+                    <li id="wipandoutputli">
+                        <a id="wipandoutputlia" href="WipAndOutputNEW.aspx" onclick="WipAndOutputJump(fty, environment);return false;" data-ajax="false">
+                       </a>
+                    </li>
+
                 </ul>
             </li>
         </ul>

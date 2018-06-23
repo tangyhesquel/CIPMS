@@ -12,7 +12,7 @@
 "btn_dctreport":"dCT Report",
 "btn_docnoinquiry":"DocNo. Inquiry",
 "btn_bundleorcartoninquiry":"Barcode Information Inquiry",
-"wipandoutputlia":"Real-time Production Information Report ",
+"btn_wipandoutputinquiry":"Real-time Production Information Report ",  
 "lbl_business":"Modules",
 "lbl_report":"Report",
  "btn_detail":"Show Detail",
@@ -20,6 +20,6 @@
  "btn_selectnone":"Select None",
 "queryfactory":"--Change Factory--", 
 "printsparebarcodea":"Print Spare Code",
+"wipandoutputlia":"Real-time Production Information Report ",
 "accounterror":"No Permession to Access this Factory for your Account ID!"    
-
 }

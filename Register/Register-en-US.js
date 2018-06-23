@@ -65,5 +65,7 @@
 "a33":"a)  Barcode Information Inquiry",
 "a32":"a)  Doc No. Inquiry",
 "a34":"13. Print Spare Code Interface",
-"a35":"a)  Print Spare Code"
+"a35":"a)  Print Spare Code",
+"a36":"14)  OutPut and Wip Report",
+"a37":"a)  OutPut and Wip Report"
 }

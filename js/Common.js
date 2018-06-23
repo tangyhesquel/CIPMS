@@ -115,7 +115,7 @@ function Accessmodulehide() {
     $('#docnoli').hide();
     $('#bundleorcartonli').hide();
     $('#printsparebarcodeli').hide();//add by lijer on 2018-05-18
-    //$('#wipandoutputli').hide();
+    $('#wipandoutputli').hide();
 }
 
 function Accessmoduleshow(data) {
@@ -148,6 +148,10 @@ function Accessmoduleshow(data) {
             $('#reportli').show();
             $('#bundleorcartonli').show();
         }
+        else if (result[i].MODULE == 'WipAndOutputNew') {
+            $('#reportli').show();
+            $('#wipandoutputli').show();
+        }
         else if (result[i].MODULE == 'Printbarcode') { $('#printli').show(); $('#printsparebarcodeli').show(); }
     });
 }
@@ -167,6 +171,7 @@ function Permissionmoduleshow(userprofile) {
         else if (o.MODULE_CD == 'Printbarcode') { $('#printli').show(); $('#printsparebarcodeli').show(); }
         else if (o.MODULE_CD == 'DocnoInquiry') $('#docnoli').show();
         else if (o.MODULE_CD == 'BarcodeInquiry') $('#bundleorcartonli').show();
+        else if (o.MODULE_CD == 'WipAndOutputNew') $('#wipandoutputli').show();
     });
 }
 
