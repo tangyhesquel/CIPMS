@@ -1,7 +1,9 @@
+echo C:\build-agent\_work\53\CIPMS
 c:
 cd \
 cd build-agent
 cd _work
 cd 53
-mkdir CIPMS
-cd CIPMS
+echo mkdir CIPMS
+echo cd CIPMS
+dir
