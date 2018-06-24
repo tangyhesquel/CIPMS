@@ -1,4 +1,3 @@
 dir c:\build-agent\_work\53\s\
-del  c:\build-agent\_work\53\s\*.*
-Y
+del  /Q c:\build-agent\_work\53\s\*.*
 dir c:\build-agent\_work\53\s\
