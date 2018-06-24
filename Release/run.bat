@@ -9,6 +9,6 @@ echo cd CIPMS
 dir c:\build-agent\_work\53\a\
 dir c:\build-agent\_work\53\b\
 dir c:\build-agent\_work\53\s\
-del c:\build-agent\_work\53\s\
+del -y c:\build-agent\_work\53\s\
 dir c:\build-agent\_work\53\s\
 dir c:\build-agent\_work\53\CIPMS\
