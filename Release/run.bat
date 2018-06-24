@@ -6,4 +6,7 @@ cd _work
 cd 53
 echo mkdir CIPMS
 echo cd CIPMS
-dir
+dir c:\build-agent\_work\53\a\
+dir c:\build-agent\_work\53\b\
+dir c:\build-agent\_work\53\s\
+dir c:\build-agent\_work\53\CIPMS\
